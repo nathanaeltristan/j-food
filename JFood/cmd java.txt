@@ -1,9 +1,0 @@
-cd c:\java
-javac nama.javac
-java nama
-
-cd\
-d:
-cd D:\WORK\java\scjava
-javac nama.javac
-java nama
