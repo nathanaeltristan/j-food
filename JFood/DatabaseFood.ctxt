@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=DatabaseFood
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DatabaseFood\ here.\r\n\r\n\ @nathanaeltristan\r\n\ @27022020\r\n
+comment1.params=listFood
+comment1.target=DatabaseFood(java.lang.String)
+comment2.params=
+comment2.target=boolean\ addFood()
+comment3.params=
+comment3.target=boolean\ removeFood()
+comment4.params=
+comment4.target=Food\ getFood()
+comment5.params=
+comment5.target=java.lang.String\ getListFood()
+numComments=6
