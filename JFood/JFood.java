@@ -11,12 +11,14 @@ public class JFood
     {
         Location location = new Location("Jakarta", "Capital", "Jakarta Selatan");
         Seller seller = new Seller(1, "Tristan", "nathanael.tristan@ui.ac.id", "085155343144", location);
-        Food food = new Food(1, "Cordon bleu", seller, 25000, "Beef");
-        Customer customer = new Customer(1, "John", "john.tristan@ui.ac.id", "12345678", "21/11/1999");
+        Food food = new Food(1, "Steak", seller, 75000, "Beef");
+        Customer customer = new Customer(1, "John", "john@ui.ac.id", "12345678", "19/11/1998");
         Invoice invoice = new Invoice(1, 1, "27/02/2020", 25000, customer);
         
-        location.printData();
+        
         seller.printData();
-        customer.printData();
+        food.printData();
+        seller.setName("Rama");
+        seller.printData();
     }
 }
