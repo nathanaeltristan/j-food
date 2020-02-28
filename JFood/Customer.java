@@ -84,7 +84,7 @@ public class Customer
     // ini adalah setter.
     /**
      * Menetapkan nilai id awal dari customer.
-     * @param id
+     * @param id       id dari customer
      */
     public void setId (int id)
     {
@@ -93,7 +93,7 @@ public class Customer
     
     /**
      * Menetapkan string nama awal dari customer.
-     * @param name
+     * @param name      merupakan nama dari customer
      */
     public void setName (String name)
     {
@@ -102,7 +102,7 @@ public class Customer
     
     /**
      * Menetapkan string email awal dari customer.
-     * @param email
+     * @param email     merupakan email dari customer
      */
     public void setEmail (String email)
     {
@@ -111,7 +111,7 @@ public class Customer
     
     /**
      * Menetapkan string password awal dari customer.
-     * @param password
+     * @param password    merupakan password dari customer
      */
     public void setPassword (String password)
     {
@@ -120,7 +120,7 @@ public class Customer
     
     /**
      * Menetapkan string joinDate awal dari customer.
-     * @param joinDate
+     * @param joinDate    merupakan tanggal customer mengakses
      */
     public void setJoinDate (String joinDate)
     {
@@ -129,7 +129,6 @@ public class Customer
     
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Customer.
-     * @param printData
      */
     public void printData()
     {

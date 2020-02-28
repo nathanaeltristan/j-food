@@ -83,7 +83,7 @@ public class Food
     // ini adalah setter (mutator).
     /**
      * Menetapkan nilai id awal dari makanan.
-     * @param id
+     * @param id            merupakan id dari makanan
      */
     public void setId(int id)
     {
@@ -93,7 +93,7 @@ public class Food
     
     /**
      * Menetapkan string nama awal dari makanan.
-     * @param name
+     * @param name          merupakan nama dari makanan
      */
     public void setName(String name)
     {
@@ -102,7 +102,7 @@ public class Food
     
     /**
      * Menetapkan data awal dari penjual (seller).
-     * @param seller
+     * @param seller        merupakan data penjual
      */
     public void setSeller(Seller seller)
     {    
@@ -111,7 +111,7 @@ public class Food
     
     /**
      * Menetapkan nilai harga awal dari makanan.
-     * @param price
+     * @param price         merupakan harga dari makanan
      */
     public void setPrice(int price)
     {
@@ -120,7 +120,7 @@ public class Food
     
     /**
      * Menetapkan string kategori awal dari makanan.
-     * @param category
+     * @param category      merupakan kategori dari makanan
      */
     public void setCategory(String category)
     {
@@ -128,8 +128,7 @@ public class Food
     }
     
     /**
-     * Bagian ini adalah bagian untuk print variabel yang ada di class Food.
-     * @param printData
+     * Bagian ini adalah bagian untuk print variabel yang ada di class Food.     
      */
     public void printData()
     {

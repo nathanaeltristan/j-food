@@ -84,7 +84,7 @@ public class Seller
     // ini adalah setter.
     /**
      * Menetapkan nilai id awal dari seller.
-     * @param id
+     * @param id        merupakan id dari penjual
      */
     public void setId (int id)
     {
@@ -93,7 +93,7 @@ public class Seller
     
     /**
      * Menetapkan string nama awal dari seller.
-     * @param name
+     * @param name      merupakan nama dari penjual
      */
     public void setName (String name)
     {
@@ -102,7 +102,7 @@ public class Seller
     
     /**
      * Menetapkan string email awal dari seller.
-     * @param email
+     * @param email     merupakan email dari penjual
      */
     public void setEmail (String email)
     {
@@ -111,7 +111,7 @@ public class Seller
     
     /**
      * Menetapkan string nomor telepon awal dari seller.
-     * @param phoneNumber
+     * @param phoneNumber   merupakan nomor telepon dari penjual
      */
     public void setPhoneNumber(String phoneNumber)
     {
@@ -120,7 +120,7 @@ public class Seller
     
     /**
      * Menetapkan lokasi awal dari seller.
-     * @param location
+     * @param location     merupakan lokasi dari penjual
      */
     public void setLocation(Location location)
     {
@@ -129,7 +129,6 @@ public class Seller
     
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Food.
-     * @param printData
      */
     public void printData()
     {

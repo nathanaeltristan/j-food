@@ -61,7 +61,7 @@ public class Location
     // ini adalah setter.
     /**
      * Menetapkan string provinsi awal dari lokasi.
-     * @param province
+     * @param province      merupakan provinsi lokasi penjualan
      */
     public void setProvince(String province)
     {
@@ -70,7 +70,7 @@ public class Location
     
     /**
      * Menetapkan string deskripsi provinsi awal dari lokasi.
-     * @param description
+     * @param description     merupakan deskripsi dari provinsi lokasi
      */
     public void setDescription(String description)
     {
@@ -79,7 +79,7 @@ public class Location
     
     /**
      * Menetapkan string kota awal dari lokasi.
-     * @param city
+     * @param city              merupakan kota dari lokasi penjualan
      */
     public void setCity(String city)
     {
@@ -88,7 +88,6 @@ public class Location
     
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Location.
-     * @param printData
      */
     public void printData()
     {

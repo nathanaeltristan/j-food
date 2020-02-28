@@ -85,7 +85,7 @@ public class Invoice
     // ini adalah setter.
     /**
      * Menetapkan nilai id awal dari invoice.
-     * @param id
+     * @param id            id dari invoice
      */
     public void setId(int id)
     {
@@ -94,7 +94,7 @@ public class Invoice
     
     /**
      * Menetapkan nilai id makanan awal dari invoice.
-     * @param idFood
+     * @param idFood        merupakan id dari makanan yang tertera di invoice
      */
     public void setIdFood(int idFood)
     {
@@ -103,7 +103,7 @@ public class Invoice
     
     /**
      * Menetapkan string tanggal awal dari invoice.
-     * @param date
+     * @param date          merupakan tanggal invoice dikeluarkan
      */
     public void setDate(String date)
     {
@@ -112,7 +112,7 @@ public class Invoice
     
     /**
      * Menetapkan string harga makanan awal dari invoice.
-     * @param totalPrice
+     * @param totalPrice    merupakan harga makanan
      */
     public void setTotalPrice(int totalPrice)
     {
@@ -121,7 +121,7 @@ public class Invoice
     
     /**
      * Menetapkan data customer yang memesan makanan.
-     * @param customer
+     * @param customer      merupakan data dari customer
      */
     public void setCustomer(Customer customer)
     {
@@ -130,7 +130,6 @@ public class Invoice
     
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Invoice.
-     * @param printData
      */
     public void printData()
     {
