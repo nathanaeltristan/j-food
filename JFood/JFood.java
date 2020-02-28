@@ -2,8 +2,8 @@
 /**
  * Write a description of class JFood here.
  *
- * @nathanaeltristan
- * @20022020
+ * @author nathanaeltristan
+ * @version 20/02/2020
  */
 public class JFood
 {

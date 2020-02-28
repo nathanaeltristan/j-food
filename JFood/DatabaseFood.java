@@ -1,37 +1,59 @@
-
 /**
- * Write a description of class DatabaseFood here.
+ * Class DatabaseFood adalah .
  *
- * @nathanaeltristan
- * @27022020
+ *
+ * @author  nathanaeltristan
+ * @version 27/02/2020
  */
+
 public class DatabaseFood
 {
-    // instance variables - replace the example below with your own
+    /* Bagian ini adalah bagian deklarasi variabel. */
     private String listFood;
 
     
+    /* Bagian ini adalah constructor dari class DatabaseFood */
+    /**
+     * @param listFood
+     */
     public DatabaseFood(String listFood)
     {
         this.listFood = listFood;
     }
 
     
-    public boolean addFood()
+    /* Bagian ini adalah bagian method dari class DatabaseFood. */
+    /**
+     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
+     * @param food
+     */
+    public boolean addFood(Food food)
     {
         return true;
     }
     
-    public boolean removeFood()
+    /**
+     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
+     * @param food
+     */
+    public boolean removeFood(Food food)
     {
-        return false;
+        return true;
     }
     
+    /**
+     * Method ini tidak memiliki value datatype, jadi return null, bukan return 0.
+     * @param getFood
+     */
     public Food getFood()
     {
         return null;
     }
     
+    /**
+     * Method untuk mengambil dan menyimpan list makanan yang ada.
+     * @param listFood
+     */
     public String getListFood()
     {
         return listFood;
