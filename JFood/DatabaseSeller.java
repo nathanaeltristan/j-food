@@ -9,17 +9,14 @@
 public class DatabaseSeller
 {
     /* Bagian ini adalah bagian deklarasi variabel. */
-    private String listSeller;
+    private static String listSeller;
 
     
     /* Bagian ini adalah constructor dari class DatabaseSeller */
     /**
      * @param listSeller
      */
-    public DatabaseSeller(String listSeller)
-    {
-        this.listSeller = listSeller;
-    }
+    
 
     
     /* Bagian ini adalah bagian method dari class DatabaseSeller. */
@@ -27,7 +24,7 @@ public class DatabaseSeller
      * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
      * @param seller
      */
-    public boolean addSeller(Seller seller)
+    public static boolean addSeller(Seller seller)
     {
         return true;
     }

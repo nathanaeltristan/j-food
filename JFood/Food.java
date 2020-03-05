@@ -13,7 +13,7 @@ public class Food
     private String name;        //nama makanan
     private Seller seller;      //nama penjual makanan
     private int price;          //harga dari makanan
-    private String category;    //kategori dari makanan
+    private FoodCategory category;    //kategori dari makanan
     
     
     /* Bagian ini adalah constructor dari class Food */
@@ -24,7 +24,7 @@ public class Food
      * @param price
      * @param category  
      */
-    public Food(int id, String name, Seller seller, int price, String category)
+    public Food(int id, String name, Seller seller, int price, FoodCategory category)
     {
         this.id = id;
         this.name = name;
@@ -75,7 +75,7 @@ public class Food
      * Method yang digunakan untuk mengambil category dari makanan.
      * @return category
      */
-    public String getCategory()
+    public FoodCategory getCategory()
     {
         return category;
     }
@@ -122,7 +122,7 @@ public class Food
      * Menetapkan string kategori awal dari makanan.
      * @param category      merupakan kategori dari makanan
      */
-    public void setCategory(String category)
+    public void setCategory(FoodCategory category)
     {
         this.category = category;
     }
@@ -132,6 +132,12 @@ public class Food
      */
     public void printData()
     {
-        System.out.println(name);       //yang diprint adalah nama dari makanan
+        System.out.println("================FOOD================");
+        System.out.println("ID:"+ id);
+        System.out.println("Name:"+ name);       //yang diprint adalah nama dari makanan
+        System.out.println("Seller:"+ seller.getName());
+        System.out.println("City:"+ seller.getLocation().getCity());
+        System.out.println("Price:"+ price);
+        System.out.println("Category:"+ FoodCategory.COFFEE);
     }
 }

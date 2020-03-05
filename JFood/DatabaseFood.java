@@ -9,17 +9,14 @@
 public class DatabaseFood
 {
     /* Bagian ini adalah bagian deklarasi variabel. */
-    private String listFood;
+    private static String listFood;
 
     
     /* Bagian ini adalah constructor dari class DatabaseFood */
     /**
      * @param listFood
      */
-    public DatabaseFood(String listFood)
-    {
-        this.listFood = listFood;
-    }
+    
 
     
     /* Bagian ini adalah bagian method dari class DatabaseFood. */
