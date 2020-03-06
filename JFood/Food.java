@@ -133,11 +133,11 @@ public class Food
     public void printData()
     {
         System.out.println("================FOOD================");
-        System.out.println("ID:"+ id);
-        System.out.println("Name:"+ name);       //yang diprint adalah nama dari makanan
-        System.out.println("Seller:"+ seller.getName());
-        System.out.println("City:"+ seller.getLocation().getCity());
-        System.out.println("Price:"+ price);
-        System.out.println("Category:"+ FoodCategory.COFFEE);
+        System.out.println("ID: "+ id);
+        System.out.println("Name: "+ name);       //yang diprint adalah nama dari makanan
+        System.out.println("Seller: "+ seller.getName());
+        System.out.println("City: "+ seller.getLocation().getCity());
+        System.out.println("Price: "+ price);
+        System.out.println("Category :"+ FoodCategory.COFFEE);
     }
 }

@@ -15,6 +15,8 @@ public class Invoice
     private String date;            //tanggal invoice
     private int totalPrice;         //total harga yang ada di invoice
     private Customer customer;      //nama customer yang membeli makanan
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
     
     /* Bagian ini adalah constructor dari class Invoice */
@@ -25,13 +27,15 @@ public class Invoice
      * @param totalPrice    
      * @param customer      
      */
-    public Invoice(int id, int idFood, String date, int totalPrice, Customer customer)
+    public Invoice(int id, int idFood, String date, int totalPrice, Customer customer, PaymentType paymentType, InvoiceStatus status)
     {
         this.id = id;
         this.idFood = idFood;
         this.date = date;
         this.totalPrice = totalPrice;
         this.customer = customer;
+        this.paymentType = paymentType;
+        this.status = status;
     }
 
     
@@ -82,6 +86,16 @@ public class Invoice
         return customer;
     }
     
+    public PaymentType getPaymentType()
+    {
+        return paymentType;
+    }
+    
+    public InvoiceStatus getInvoiceStatus()
+    {
+        return status;
+    }
+    
     // ini adalah setter.
     /**
      * Menetapkan nilai id awal dari invoice.
@@ -128,11 +142,27 @@ public class Invoice
         this.customer = customer;
     }
     
+    public void setPaymentType(PaymentType paymentType)
+    {
+        this.paymentType = paymentType;
+    }
+    
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+        this.status = status;
+    }
+    
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Invoice.
      */
     public void printData()
     {
-        System.out.println(totalPrice); //yang diprint adalah total harga makanan yang dibeli
+        System.out.println("================INVOICE================");
+        System.out.println("ID: "+ id);
+        System.out.println("Food ID: "+ idFood);
+        System.out.println("Date: "+ date);
+        System.out.println("Customer: "+ customer.getName());
+        System.out.println("Total Price: "+ totalPrice); //yang diprint adalah total harga makanan yang dibeli
+        System.out.println("Status: "+ InvoiceStatus.FINISHED);
     }
 }
