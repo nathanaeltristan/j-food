@@ -6,7 +6,7 @@
  */
 public class CashlessInvoice extends Invoice
 {
-        private static final PaymentType PAYMENT_TYPE = PaymentType.Cashless;
+        private static final PaymentType PAYMENT_TYPE = PaymentType.CASHLESS;
         private Promo promo;
     
     /**
