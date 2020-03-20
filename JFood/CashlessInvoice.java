@@ -6,7 +6,7 @@
  */
 public class CashlessInvoice extends Invoice
 {
-        private static final PaymentType PAYMENT_TYPE = PaymentType.CASHLESS;
+        private static final PaymentType PAYMENT_TYPE = PaymentType.Cashless;
         private Promo promo;
     
     /**
@@ -56,16 +56,16 @@ public class CashlessInvoice extends Invoice
     public void printData()
     {
         System.out.println("==========INVOICE==========");
-        System.out.println("ID: " + getId());
-        System.out.println("Food: " + getFood().getName());
-        System.out.println("Date: " + getDate());
-        System.out.println("Customer: " + getCustomer().getName());
+        System.out.println("ID: " + super.getId());
+        System.out.println("Food: " + super.getFood().getName());
+        System.out.println("Date: " + super.getDate());
+        System.out.println("Customer: " + super.getCustomer().getName());
         if(getFood().getPrice() != totalPrice)
         {
             System.out.println("Promo: "+ promo.getCode());
         }
-        System.out.println("Total Price: " + totalPrice);
-        System.out.println("Status: " + getInvoiceStatus());
+        System.out.println("Total Price: " + super.totalPrice);
+        System.out.println("Status: " + super.getInvoiceStatus());
         System.out.println("Payment Type: " + getPaymentType());
     }
 }
