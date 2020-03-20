@@ -16,21 +16,15 @@ public class JFood
         Food food3 = new Food(3, "Green Tea Latte", seller, 15000, FoodCategory.COFFEE);
         Customer customer = new Customer(1, "Timothy", "john@ui.ac.id", "12345678", "19/11/1998");
         Promo promo = new Promo(1, "OVO12", 2500, 25000, true);
-        CashlessInvoice invoice1 = new CashlessInvoice(1, food1, "12-03-2020", customer, InvoiceStatus.ONGOING);
-        CashlessInvoice invoice2 = new CashlessInvoice(2, food1, "12-03-2020", customer, InvoiceStatus.FINISHED);
-        CashlessInvoice invoice3 = new CashlessInvoice(3, food2, "12-03-2020", customer, InvoiceStatus.FINISHED, promo);
-        CashlessInvoice invoice4 = new CashlessInvoice(4, food3, "12-03-2020", customer, InvoiceStatus.FINISHED, promo);
+        CashInvoice invoice1 = new CashInvoice(1, food1, "12-03-2020", customer, InvoiceStatus.FINISHED);
+        CashInvoice invoice2 = new CashInvoice(2, food2, "12-03-2020", customer, InvoiceStatus.FINISHED, 8000);
         
         
         
         invoice1.setTotalPrice();
         invoice2.setTotalPrice();
-        invoice3.setTotalPrice();
-        invoice4.setTotalPrice();
         
         invoice1.printData();
         invoice2.printData();
-        invoice3.printData();
-        invoice4.printData();
     }
 }
