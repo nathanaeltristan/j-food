@@ -1,57 +1,57 @@
 /**
- * Class DatabaseFood adalah .
+ * Class DatabasePromo adalah .
  *
  *
  * @author  nathanaeltristan
- * @version 27/02/2020
+ * @version 19/03/2020
  */
 
-public class DatabaseFood
+public class DatabasePromo
 {
     /* Bagian ini adalah bagian deklarasi variabel. */
-    private static String listFood;
+    private static String listPromo;
 
     
-    /* Bagian ini adalah constructor dari class DatabaseFood */
+    /* Bagian ini adalah constructor dari class DatabasePromo */
     /**
-     * @param listFood
+     * @param listPromo
      */
     
 
     
-    /* Bagian ini adalah bagian method dari class DatabaseFood. */
+    /* Bagian ini adalah bagian method dari class DatabasePromo. */
     /**
      * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param food
+     * @param promo
      */
-    public static boolean addFood(Food food)
+    public static boolean addPromo(Promo promo)
     {
         return true;
     }
     
     /**
      * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param food
+     * @param promo
      */
-    public static boolean removeFood(Food food)
+    public boolean removePromo(Promo promo)
     {
         return true;
     }
     
     /**
      * Method ini tidak memiliki value datatype, jadi return null, bukan return 0.
-     * @param getFood
+     * @param getPromo
      */
-    public static Food getFood()
+    public Promo getPromo()
     {
         return null;
     }
     
     /**
      * Method untuk mengambil dan menyimpan list makanan yang ada.
-     * @param listFood
+     * @param listPromo
      */
-    public static String[] getListFood()
+    public String[] getListPromo()
     {
         return null;
     }

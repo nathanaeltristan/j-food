@@ -11,6 +11,6 @@ comment3.params=
 comment3.target=Food\ getFood()
 comment3.text=\r\n\ Method\ ini\ tidak\ memiliki\ value\ datatype,\ jadi\ return\ null,\ bukan\ return\ 0.\r\n\ @param\ getFood\r\n
 comment4.params=
-comment4.target=java.lang.String\ getListFood()
+comment4.target=java.lang.String[]\ getListFood()
 comment4.text=\r\n\ Method\ untuk\ mengambil\ dan\ menyimpan\ list\ makanan\ yang\ ada.\r\n\ @param\ listFood\r\n
 numComments=5

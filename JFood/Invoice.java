@@ -7,162 +7,161 @@
  * @version 20/02/2020
  */
 
-public class Invoice
+public abstract class Invoice
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private int id;                 //id dari invoice
-    private int idFood;             //id makanan yang dipesan
-    private String date;            //tanggal invoice
-    private int totalPrice;         //total harga yang ada di invoice
-    private Customer customer;      //nama customer yang membeli makanan
-    private PaymentType paymentType;
-    private InvoiceStatus status;
-
-    
-    /* Bagian ini adalah constructor dari class Invoice */
-    /**
-     * @param id            
-     * @param idFood        
-     * @param date          
-     * @param totalPrice    
-     * @param customer      
+   /**
+     * The variable for class Invoice
      */
-    public Invoice(int id, int idFood, String date, int totalPrice, Customer customer, PaymentType paymentType, InvoiceStatus status)
+    private int id;
+    private Food Food;
+    private String date;
+    protected int totalPrice;
+    private Customer customer;
+    private InvoiceStatus invoiceStatus;
+    
+    /**
+     * Constructor for objects in class Invoice
+     * 
+     * @param id (invoice's id)
+     * @param idFood (invoice's food id)
+     * @param date (invoice's date)
+     * @param totalprice (invoice's total price)
+     * @param customer (invoice's customer)
+     */
+    public Invoice(int id, Food Food, String date, Customer customer,  InvoiceStatus invoiceStatus)
     {
-        this.id = id;
-        this.idFood = idFood;
-        this.date = date;
-        this.totalPrice = totalPrice;
-        this.customer = customer;
-        this.paymentType = paymentType;
-        this.status = status;
+       this.id = id;
+       this.Food = Food;
+       this.date = date;
+       this.customer = customer;
+       this.totalPrice = totalPrice;
+       this.invoiceStatus = invoiceStatus;
     }
 
-    
-    /* Bagian ini adalah bagian method dari class Invoice. */
-    // ini adalah getter.
     /**
-     * Method yang digunakan untuk mengambil id dari invoice.
+     * Gets the invoice's id
+     *
      * @return id
      */
     public int getId()
     {
         return id;
     }
-    
     /**
-     * Method yang digunakan untuk mengambil id makanan dari invoice.
+     * Gets the invoice's food id
+     *
      * @return idFood
      */
-    public int getIdFood()
+    public Food getFood()
     {
-        return idFood;
+        return Food;
     }
-    
     /**
-     * Method yang digunakan untuk mengambil nama dari seller.
+     * Gets the invoice's date
+     *
      * @return date
      */
     public String getDate()
     {
         return date;
     }
-    
     /**
-     * Integer memiliki value return dari variable.
+     * Gets the invoice's total price
+     *
      * @return totalPrice
      */
     public int getTotalPrice()
     {
         return totalPrice;
     }
-    
     /**
-     * Mengambil parameter dari Class Customer.
+     * Gets the invoice's customer
+     *
      * @return customer
      */
     public Customer getCustomer()
     {
         return customer;
     }
+    /**
+     * Gets the invoice's payment type
+     *
+     * @return paymenType
+     */
+    public abstract PaymentType getPaymentType();
     
-    public PaymentType getPaymentType()
-    {
-        return paymentType;
-    }
-    
+    /**
+     * Gets the invoice's status
+     *
+     * @return status
+     */
     public InvoiceStatus getInvoiceStatus()
     {
-        return status;
+        return invoiceStatus;
     }
-    
-    // ini adalah setter.
     /**
-     * Menetapkan nilai id awal dari invoice.
-     * @param id            id dari invoice
+     * Sets the invoice's id
+     * 
+     * @param id
      */
     public void setId(int id)
     {
         this.id = id;
     }
-    
     /**
-     * Menetapkan nilai id makanan awal dari invoice.
-     * @param idFood        merupakan id dari makanan yang tertera di invoice
+     * Sets the invoice's food id
+     * 
+     * @param idFood
      */
-    public void setIdFood(int idFood)
+     public void setFood(Food Food)
     {
-        this.idFood = idFood;
+        this.Food = Food;
     }
-    
     /**
-     * Menetapkan string tanggal awal dari invoice.
-     * @param date          merupakan tanggal invoice dikeluarkan
+     * Sets the invoice's date
+     * 
+     * @param date
      */
     public void setDate(String date)
     {
         this.date = date;
     }
-    
     /**
-     * Menetapkan string harga makanan awal dari invoice.
-     * @param totalPrice    merupakan harga makanan
+     * Sets the invoice's total price
+     * 
+     * @param totalPrice
      */
-    public void setTotalPrice(int totalPrice)
-    {
-        this.totalPrice = totalPrice;
-    }
+    public abstract void setTotalPrice();
     
     /**
-     * Menetapkan data customer yang memesan makanan.
-     * @param customer      merupakan data dari customer
+     * Sets the invoice's customer
+     * 
+     * @param customer
      */
     public void setCustomer(Customer customer)
     {
         this.customer = customer;
     }
     
-    public void setPaymentType(PaymentType paymentType)
-    {
-        this.paymentType = paymentType;
-    }
-    
-    public void setInvoiceStatus(InvoiceStatus status)
-    {
-        this.status = status;
-    }
-    
+      
     /**
-     * Bagian ini adalah bagian untuk print variabel yang ada di class Invoice.
+     * Sets the invoice's status
+     * 
+     * @param status
      */
-    public void printData()
+    public void setInvoiceStatus(InvoiceStatus InvoiceStatus)
     {
-        System.out.println("================INVOICE================");
-        System.out.println("ID: "+ id);
-        System.out.println("Food ID: "+ idFood);
-        System.out.println("Date: "+ date);
-        System.out.println("Customer: "+ customer.getName());
-        System.out.println("Total Price: "+ totalPrice); //yang diprint adalah total harga makanan yang dibeli
-        System.out.println("Status: "+ InvoiceStatus.FINISHED);
+        this.invoiceStatus = invoiceStatus;
     }
+     /**
+     * To print out (printData)
+     * 
+     * @param idFood
+     * @param totalPrice
+     */
+    public abstract void printData();
+    
+    
+   
+    
 }
