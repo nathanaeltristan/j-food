@@ -7,7 +7,7 @@
  * @version 20/02/2020
  */
 
-public abstract class Invoice
+abstract class Invoice
 {
    /**
      * The variable for class Invoice
