@@ -24,6 +24,7 @@ public class CashlessInvoice extends Invoice
        this.promo = promo;
     }
     
+    @Override
     public PaymentType getPaymentType()
     {
         return PAYMENT_TYPE;
