@@ -8,21 +8,15 @@
 
 public class Food
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private int id;             //id dari makanan
-    private String name;        //nama makanan
-    private Seller seller;      //nama penjual makanan
-    private int price;          //harga dari makanan
-    private FoodCategory category;    //kategori dari makanan
+    private int id;
+    private String name;
+    private int price;
+    private Seller seller;
+    private FoodCategory category;
     
     
-    /* Bagian ini adalah constructor dari class Food */
     /**
-     * @param id        
-     * @param name      
-     * @param seller   
-     * @param price
-     * @param category  
+     * Constructor for objects of class Food
      */
     public Food(int id, String name, Seller seller, int price, FoodCategory category)
     {
@@ -30,108 +24,71 @@ public class Food
         this.name = name;
         this.seller = seller;
         this.price = price;
-        this.category = category;
+        this.category = category;  
     }
-
     
-    // ini adalah getter (accessor).
-    /**
-     * Method yang digunakan untuk mengambil id dari makanan.
-     * @return id
-     */
+    
     public int getId()
-    {    
+    {
         return id;
     }
     
-    /**
-     * Method yang digunakan untuk mengambil nama dari makanan.
-     * @return name
-     */
     public String getName()
     {
         return name;
     }
     
-    /**
-     * Method yang digunakan untuk mengambil data parameter dari penjual (seller).
-     * @return seller
-     */
-    public Seller getSeller()
-    {
-        return this.seller;
-    }
-    
-    /**
-     * Method yang digunakan untuk mengambil harga dari makanan.
-     * @return price
-     */
     public int getPrice()
     {
         return price;
     }
     
-    /**
-     * Method yang digunakan untuk mengambil category dari makanan.
-     * @return category
-     */
     public FoodCategory getCategory()
     {
         return category;
     }
     
-    // ini adalah setter (mutator).
-    /**
-     * Menetapkan nilai id awal dari makanan.
-     * @param id            merupakan id dari makanan
-     */
+    public Seller getSeller()
+    {
+        return seller;
+    }
+    
+    
     public void setId(int id)
     {
         this.id = id;
     }
     
-    
-    /**
-     * Menetapkan string nama awal dari makanan.
-     * @param name          merupakan nama dari makanan
-     */
     public void setName(String name)
     {
         this.name = name;
     }
     
-    /**
-     * Menetapkan data awal dari penjual (seller).
-     * @param seller        merupakan data penjual
-     */
-    public void setSeller(Seller seller)
-    {    
-        this.seller = seller;
-    }
-    
-    /**
-     * Menetapkan nilai harga awal dari makanan.
-     * @param price         merupakan harga dari makanan
-     */
     public void setPrice(int price)
     {
         this.price = price;
     }
     
-    /**
-     * Menetapkan string kategori awal dari makanan.
-     * @param category      merupakan kategori dari makanan
-     */
-    public void setCategory(FoodCategory category)
+    public void setCategory(FoodCategory Category)
     {
         this.category = category;
+    }
+    
+    public void setSeller(Seller seller)
+    {
+        this.seller = seller;
     }
     
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Food.     
      */
-    public void printData()
+    public String toString()
     {
-        
+        return "Id = " + getId() 
+        + "Name = " + getName() 
+        + "Seller = " + getSeller().getName() 
+        + "City =" + seller.getLocation().getCity() 
+        + "Price = " + getPrice() 
+        + "Category = " + getCategory().toString();
     }
 }

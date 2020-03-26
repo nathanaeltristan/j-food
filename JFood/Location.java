@@ -86,11 +86,10 @@ public class Location
         this.city = city;
     }
     
-    /**
-     * Bagian ini adalah bagian untuk print variabel yang ada di class Location.
-     */
-    public void printData()
+    public String toString()
     {
-        System.out.println(province);   //yang diprint adalah provinsi dari lokasi
+         return "Province = " + getProvince() 
+         + "City = " + getCity() 
+         + "Description = " + getDescription();
     }
 }

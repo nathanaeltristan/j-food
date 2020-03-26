@@ -130,8 +130,11 @@ public class Seller
     /**
      * Bagian ini adalah bagian untuk print variabel yang ada di class Food.
      */
-    public void printData()
+    public String toString()
     {
-        System.out.println(name);       //yang diprint adalah nama penjual makanan
+        return "Id = " + getId() 
+        + "Name = " + getName() 
+        + "Phone Number = " + getPhoneNumber() 
+        + "Location =" + getLocation().getCity();
     }
 }
