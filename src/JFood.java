@@ -23,20 +23,22 @@ public class JFood
         DatabaseFood.addFood(new Food(2, "Asian Dolce Latte", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 25000, FoodCategory.COFFEE));
         DatabaseFood.addFood(new Food(3, "Ramen", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 75000, FoodCategory.JAPANESE));
 
-        System.out.println("Daftar Food Category Coffee: ");
-        for (Food food : DatabaseFood.getFoodByCategory(FoodCategory.COFFEE))
-        {
-            System.out.println(food.getName());
-        }
+        //System.out.println("Daftar Food Category Coffee: ");
+        //for (Food food : DatabaseFood.getFoodByCategory(FoodCategory.COFFEE))
+        //{
+        //    System.out.println(food.getName());
+        //}
+        //System.out.println(DatabaseFood.getFoodByCategory(FoodCategory.COFFEE));
 
         DatabaseCustomer.addCustomer(new Customer(13, "Hosea", "hosea@gmail.com", "AkuWibu345", calendar));
         DatabaseCustomer.addCustomer(new Customer(45, "Hosea", "hosea@gmail.com", "AkuWibu123", 2020, 04, 02));
         DatabaseCustomer.addCustomer(new Customer(35, "Rama", "rama@gmail.com", "AkuBukanWibu234"));
 
-        System.out.println("Daftar Customer: ");
-        for (Customer customer : DatabaseCustomer.getCustomerDatabase())
-        {
-            System.out.println(customer.getName());
-        }
+        //System.out.println("Daftar Customer: ");
+        //for (Customer customer : DatabaseCustomer.getCustomerDatabase())
+        //{
+         //   System.out.println(customer.getName());
+        //}
+        //System.out.println(DatabaseCustomer.getCustomerDatabase());
     }
 }
