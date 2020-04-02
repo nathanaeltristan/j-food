@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Write a description of class DatabaseCustomer here.
  *
@@ -6,45 +8,72 @@
  */
 public class DatabaseCustomer
 {
-    // instance variables - replace the example below with your own
-    private static String listCustomer;
 
-    /**
-     * Constructor for objects of class DatabaseCustomer
-     */
-    
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+    private static int lastId = 0;
+    public static ArrayList<Customer> getCustomerDatabase()
+    {
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public static boolean addCustomer(Customer customer)
-    {
-        return true;
+        return CUSTOMER_DATABASE;
+
     }
-    
-    public static boolean removeCustomer(Customer customer)
+
+    public static int getLastId()
     {
-        return true;
+
+        return lastId;
+
     }
-    
-    /**
-     * Method ini tidak memiliki value datatype, jadi return null, bukan return 0.
-     * @param getCustomer
-     */
-    public Seller getCustomer()
+
+    public static Customer getCustomerById(int id)
     {
+
+        for(Customer customer : CUSTOMER_DATABASE)
+        {
+            if (customer.getId() == id)
+            {
+                return customer;
+            }
+        }
         return null;
     }
-    
-    /**
-     * Method untuk mengambil dan menyimpan list makanan yang ada.
-     * @param listCustomer
-     */
-    public String getListCustomer()
+
+    public static boolean addCustomer(Customer customer)
     {
-        return listCustomer;
+        for(Customer customer1 : CUSTOMER_DATABASE)
+        {
+            if (customer.getEmail() == customer1.getEmail())
+            {
+                return false;
+            }
+        }
+        CUSTOMER_DATABASE.add(customer);
+        lastId = customer.getId();
+        return true;
+
     }
+
+    public static boolean removeCustomer(int id)
+    {
+
+        for(Customer customer : CUSTOMER_DATABASE)
+        {
+            if (customer.getId() == id)
+            {
+                CUSTOMER_DATABASE.remove(customer);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    /**
+     * getListCustomer() is used to return the current list of seller
+     *
+     * @return    listSeller that contains some String
+     */
+
+
 }

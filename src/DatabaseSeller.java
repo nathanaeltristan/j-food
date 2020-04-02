@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Class DatabaseSeller adalah .
  *
@@ -8,51 +10,64 @@
 
 public class DatabaseSeller
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private static String listSeller;
 
-    
-    /* Bagian ini adalah constructor dari class DatabaseSeller */
-    /**
-     * @param listSeller
-     */
-    
+    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
+    private static int lastId = 0;
+    public static ArrayList<Seller> getSellerDatabase()
+    {
 
-    
-    /* Bagian ini adalah bagian method dari class DatabaseSeller. */
-    /**
-     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param seller
-     */
-    public static boolean addSeller(Seller seller)
-    {
-        return true;
+        return SELLER_DATABASE;
+
     }
-    
-    /**
-     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param seller
-     */
-    public boolean removeSeller(Seller seller)
+
+    public static int getLastId()
     {
-        return true;
+
+        return lastId;
+
     }
-    
-    /**
-     * Method ini tidak memiliki value datatype, jadi return null, bukan return 0.
-     * @param getSeller
-     */
-    public Seller getSeller()
+
+    public static Seller getSellerById(int id)
     {
+
+        for(Seller seller : SELLER_DATABASE)
+        {
+            if (seller.getId() == id)
+            {
+                return seller;
+            }
+        }
         return null;
     }
-    
-    /**
-     * Method untuk mengambil dan menyimpan list makanan yang ada.
-     * @param listSeller
-     */
-    public String getListSeller()
+
+    public static boolean addSeller(Seller seller)
     {
-        return listSeller;
+
+        SELLER_DATABASE.add(seller);
+        lastId = seller.getId();
+        return true;
+
     }
+
+    public static boolean removeSeller(int id)
+    {
+
+        for(Seller seller : SELLER_DATABASE)
+        {
+            if (seller.getId() == id)
+            {
+                SELLER_DATABASE.remove(seller);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    /**
+     * getListSeller() is used to return the current list of seller
+     *
+     * @return    listSeller that contains some String
+     */
+
 }

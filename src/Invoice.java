@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  * Class Invoice berisi id dari invoice, id dan total harga dari makanan,
  * tanggal pembelian, dan nama customer.
@@ -7,161 +10,187 @@
  * @version 20/02/2020
  */
 
-abstract class Invoice
+public abstract class Invoice
 {
-   /**
-     * The variable for class Invoice
-     */
+
     private int id;
-    private Food Food;
-    private String date;
-    protected int totalPrice;
+    private ArrayList<Food> foods;
+    private Calendar date;
+    protected int totalPrice = 0;
     private Customer customer;
-    private InvoiceStatus invoiceStatus;
-    
+    private InvoiceStatus invoiceStatus = InvoiceStatus.ONGOING;
+
     /**
-     * Constructor for objects in class Invoice
-     * 
-     * @param id (invoice's id)
-     * @param idFood (invoice's food id)
-     * @param date (invoice's date)
-     * @param totalprice (invoice's total price)
-     * @param customer (invoice's customer)
+     * Constructor for objects of class Invoice
      */
-    public Invoice(int id, Food Food, String date, Customer customer,  InvoiceStatus invoiceStatus)
+    public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
-       this.id = id;
-       this.Food = Food;
-       this.date = date;
-       this.customer = customer;
-       this.totalPrice = totalPrice;
-       this.invoiceStatus = invoiceStatus;
+
+        this.id = id;
+        this.foods = foods;
+        this.customer = customer;
+        this.date = Calendar.getInstance();
+
     }
 
     /**
-     * Gets the invoice's id
+     * getId() is used to return Invoice's ID
      *
-     * @return id
+     * @return    the Id of Invoice instance
      */
     public int getId()
     {
+
         return id;
+
     }
+
     /**
-     * Gets the invoice's food id
+     * getFood() is used to return Invoice's food
      *
-     * @return idFood
+     * @return    the food of Invoice instance
      */
-    public Food getFood()
+    public ArrayList<Food> getFoods()
     {
-        return Food;
+
+        return foods;
+
     }
+
     /**
-     * Gets the invoice's date
+     * getDate() is used to return Invoice's Date
      *
-     * @return date
+     * @return    the Date of Invoice instance
      */
-    public String getDate()
+    public Calendar getDate()
     {
+
         return date;
+
     }
+
     /**
-     * Gets the invoice's total price
+     * getTotalPrice() is used to return Invoice's total price
      *
-     * @return totalPrice
+     * @return    the totalPrice of Invoice instance
      */
     public int getTotalPrice()
     {
+
         return totalPrice;
+
     }
+
     /**
-     * Gets the invoice's customer
+     * getCustomer() is used to return Invoice's customer
      *
-     * @return customer
+     * @return    the customer of Invoice instance
      */
     public Customer getCustomer()
     {
+
         return customer;
+
     }
+
     /**
-     * Gets the invoice's payment type
+     * getPaymentType() is used to return Invoice's payment method
      *
-     * @return paymenType
+     * @return    the paymentType of Invoice instance
      */
     public abstract PaymentType getPaymentType();
-    
+
+
     /**
-     * Gets the invoice's status
+     * getInvoiceStatus() is used to return Invoice's current status
      *
-     * @return status
+     * @return    the status of Invoice instance
      */
     public InvoiceStatus getInvoiceStatus()
     {
+
         return invoiceStatus;
+
     }
+
     /**
-     * Sets the invoice's id
-     * 
-     * @param id
+     * setId() is used to change Invoice's ID
+     *
+     * @param   id to overwrite the current instance's id
      */
     public void setId(int id)
     {
+
         this.id = id;
+
     }
+
     /**
-     * Sets the invoice's food id
-     * 
-     * @param idFood
+     * setFood() is used to change Invoice's food
+     *
+     * @param   foods to overwrite the current instance's food
      */
-     public void setFood(Food Food)
+    public void setFoods(ArrayList<Food> foods)
     {
-        this.Food = Food;
+
+        this.foods = foods;
+
     }
+
     /**
-     * Sets the invoice's date
-     * 
-     * @param date
+     * setDate() is used to change Invoice's date
+     *
+     * @param   date to overwrite the current instance's date
      */
-    public void setDate(String date)
+    public void setDate(Calendar date)
     {
+
         this.date = date;
+
     }
+
     /**
-     * Sets the invoice's total price
-     * 
-     * @param totalPrice
+     * setDate() is used to change Invoice's date
+     *
+     * @param   date to overwrite the current instance's date
+     */
+    public void setDate(int year, int month, int dayOfMonth)
+    {
+
+        this.date.set(year, month, dayOfMonth);
+
+    }
+
+    /**
+     * setTotalPrice() is used to change Invoice's total price
+     *
+     * @param   totalPrice to overwrite the current instance's totalPrice
      */
     public abstract void setTotalPrice();
-    
+
     /**
-     * Sets the invoice's customer
-     * 
-     * @param customer
+     * setCustomer() is used to change Invoice's customer
+     *
+     * @param   customer to overwrite the current instance's customer
      */
     public void setCustomer(Customer customer)
     {
+
         this.customer = customer;
+
     }
-    
-      
+
     /**
-     * Sets the invoice's status
-     * 
-     * @param status
+     * setInvoiceStatus() is used to change Invoice's status
+     *
+     * @param   status to overwrite the current instance's status
      */
-    public void setInvoiceStatus(InvoiceStatus InvoiceStatus)
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus)
     {
+
         this.invoiceStatus = invoiceStatus;
+
     }
-     /**
-     * To print out (printData)
-     * 
-     * @param idFood
-     * @param totalPrice
-     */
-    public abstract void printData();
-    
-    
-   
-    
+
+    public abstract String toString();
 }
