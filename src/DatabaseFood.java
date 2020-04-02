@@ -10,24 +10,32 @@ import java.util.ArrayList;
 
 public class DatabaseFood
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private static String listFood;
-    private static ArrayList<Food> FOOD_DATABASE;
-    private static int lastId;
 
-    
-    /* Bagian ini adalah constructor dari class DatabaseFood */
-    /**
-     * @param listFood
-     */
-    
+    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
+    private static int lastId = 0;
+
+    public static ArrayList<Food> getFoodDatabase()
+    {
+
+        return FOOD_DATABASE;
+
+    }
+
+    public static int getLastId()
+    {
+
+        return lastId;
+
+    }
+
     public static Food getFoodById(int id)
     {
-        for (Food foods : FOOD_DATABASE)
+
+        for(Food food : FOOD_DATABASE)
         {
-            if(foods.getId() == id)
+            if (food.getId() == id)
             {
-                return foods;
+                return food;
             }
         }
         return null;
@@ -35,58 +43,56 @@ public class DatabaseFood
 
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
-        ArrayList<Food> list = new ArrayList<>();
-        for (Food food : FOOD_DATABASE)
+        ArrayList<Food> temp = new ArrayList<Food>();
+        for(Food food : FOOD_DATABASE)
         {
-            if(food.getSeller().getId() == sellerId)
+            if (food.getSeller().getId() == sellerId)
             {
-                list.add(food);
+                temp.add(food);
             }
         }
-        return list;
-    }
-
-    public static ArrayList<Food> getFoodDatabase()
-    {
-        return FOOD_DATABASE;
-    }
-
-    public int getLastId()
-    {
-        return lastId;
+        if (temp == null)
+        {
+            return null;
+        }
+        else
+        {
+            return temp;
+        }
     }
 
     public static ArrayList<Food> getFoodByCategory(FoodCategory category)
     {
-        ArrayList<Food> list = new ArrayList<>();
-        for (Food food : FOOD_DATABASE)
+        ArrayList<Food> temp = new ArrayList<Food>();
+        for(Food food : FOOD_DATABASE)
         {
-            if(food.getCategory() == category)
+            if (food.getCategory() == category)
             {
-                list.add(food);
+                temp.add(food);
             }
         }
-        return list;
+        if (temp == null)
+        {
+            return null;
+        }
+        else
+        {
+            return temp;
+        }
     }
-    
-    /* Bagian ini adalah bagian method dari class DatabaseFood. */
-    /**
-     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param food
-     */
+
     public static boolean addFood(Food food)
     {
+
         FOOD_DATABASE.add(food);
         lastId = food.getId();
         return true;
+
     }
-    
-    /**
-     * Boolean hanya memiliki dua value datatype, yes atau no, on atau off, true atau false.
-     * @param food
-     */
-    public static boolean removeFood(Food food)
+
+    public static boolean removeFood(int id)
     {
+
         for(Food food : FOOD_DATABASE)
         {
             if (food.getId() == id)
@@ -96,5 +102,13 @@ public class DatabaseFood
             }
         }
         return false;
+
     }
+    /**
+     * getListFood() is used to return the current list of food
+     *
+     * @return    listFood that contains some String
+     */
+
+
 }
