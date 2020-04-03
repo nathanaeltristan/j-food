@@ -11,8 +11,9 @@ import java.util.ArrayList;
 public class DatabaseSeller
 {
 
-    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
+    private static final ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
     private static int lastId = 0;
+
     public static ArrayList<Seller> getSellerDatabase()
     {
 

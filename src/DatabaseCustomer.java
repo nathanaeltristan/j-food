@@ -9,8 +9,9 @@ import java.util.ArrayList;
 public class DatabaseCustomer
 {
 
-    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+    private static final ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int lastId = 0;
+
     public static ArrayList<Customer> getCustomerDatabase()
     {
 

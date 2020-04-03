@@ -40,5 +40,44 @@ public class JFood
          //   System.out.println(customer.getName());
         //}
         //System.out.println(DatabaseCustomer.getCustomerDatabase());
+
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "pastipas", 50000, 100000, true));
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "pastipas", 20000, 200000, true));
+
+        System.out.println("\nDaftar Promo: ");
+        for (Promo promo : DatabasePromo.getPromoDatabase())
+        {
+            System.out.println(promo.getCode());
+        }
+
+        ArrayList<Food> foods1 = new ArrayList<>();
+        foods1.add(DatabaseFood.getFoodById(3));
+        ArrayList<Food> foods2 = new ArrayList<>();
+        foods2.add(DatabaseFood.getFoodById(1));
+        foods2.add(DatabaseFood.getFoodById(2));
+
+        DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foods2, DatabaseCustomer.getCustomerById(1), 2000));
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            invoice.setTotalPrice();
+        }
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastId())));
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            invoice.setTotalPrice();
+        }
+
+        System.out.println("\nDaftar Invoice: ");
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        {
+            System.out.println(invoice.toString() + "\n");
+        }
+
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            invoice.setInvoiceStatus(InvoiceStatus.FINISHED);
+        }
+
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastId())));
     }
 }

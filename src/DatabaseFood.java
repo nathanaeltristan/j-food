@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseFood
 {
 
-    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
+    private static final ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
     private static int lastId = 0;
 
     public static ArrayList<Food> getFoodDatabase()

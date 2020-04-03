@@ -11,8 +11,9 @@ import java.util.ArrayList;
 public class DatabasePromo
 {
 
-    private static ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
+    private static final ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
     private static int lastId;
+
     public static ArrayList<Promo> getPromoDatabase()
     {
 

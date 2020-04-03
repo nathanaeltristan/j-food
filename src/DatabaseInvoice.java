@@ -1,17 +1,23 @@
 import java.util.ArrayList;
 
-public class DatabaseInvoice {
-    private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<Invoice>();
+public class DatabaseInvoice
+{
+
+    private static final ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<Invoice>();
     private static int lastId = 0;
 
     public static ArrayList<Invoice> getInvoiceDatabase()
     {
+
         return INVOICE_DATABASE;
+
     }
 
     public static int getLastId()
     {
+
         return lastId;
+
     }
 
     public static Invoice getInvoiceById(int id)
@@ -29,41 +35,41 @@ public class DatabaseInvoice {
 
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
-        ArrayList<Invoice> kembali = new ArrayList<Invoice>();
+        ArrayList<Invoice> temp = new ArrayList<Invoice>();
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(invoice.getId() == customerId)
+            if (invoice.getCustomer().getId() == customerId)
             {
-                kembali.add(invoice);
+                temp.add(invoice);
             }
         }
-        if(kembali.isEmpty())
-        {
-            return null;
-        }
-        return kembali;
+        return temp;
     }
 
     public static boolean addInvoice(Invoice invoice)
     {
-        for(Invoice invoicenew : INVOICE_DATABASE)
+
+        if (invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING))
         {
-            if(invoicenew.getInvoiceStatus().equals(InvoiceStatus.ONGOING))
-            {
-                return false;
-            }
+            return false;
         }
-        INVOICE_DATABASE.add(invoice);
-        lastId = invoice.getId();
-        return true;
+        else
+        {
+            INVOICE_DATABASE.add(invoice);
+            lastId = invoice.getId();
+            return true;
+
+        }
+
     }
 
-    public static boolean changeInvoice(InvoiceStatus invoiceStatus)
+    public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus)
     {
-        for(Invoice invoice : INVOICE_DATABASE)
+        for (Invoice invoice : INVOICE_DATABASE)
         {
-            if(invoiceStatus.equals(InvoiceStatus.ONGOING))
+            if (invoice.getId() == id)
             {
+                invoice.setInvoiceStatus(invoiceStatus);
                 return true;
             }
         }
@@ -73,5 +79,22 @@ public class DatabaseInvoice {
     public static boolean removeInvoice(int id)
     {
 
+        for(Invoice invoice : INVOICE_DATABASE)
+        {
+            if (invoice.getId() == id)
+            {
+                INVOICE_DATABASE.remove(invoice);
+                return true;
+            }
+        }
+        return false;
+
     }
+
+    /**
+     * getListSeller() is used to return the current list of seller
+     *
+     * @return    listSeller that contains some String
+     */
+
 }
