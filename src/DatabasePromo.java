@@ -28,7 +28,7 @@ public class DatabasePromo
 
     }
 
-    public static Promo getPromoById(int id)
+    public static Promo getPromoById(int id) throws PromoNotFoundException
     {
 
         for(Promo promo : PROMO_DATABASE)
@@ -38,7 +38,7 @@ public class DatabasePromo
                 return promo;
             }
         }
-        return null;
+        throw new PromoNotFoundException(id);
     }
 
     public static Promo getPromoByCode(String code)

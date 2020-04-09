@@ -43,10 +43,9 @@ public class DatabaseFood
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
         ArrayList<Food> foodList = new ArrayList<Food>();
-        Seller seller = DatabaseSeller.getSellerById(sellerId);
-        for(Food food : FOOD_DATABASE)
+        for (Food food : FOOD_DATABASE)
         {
-            if (food.getSeller().equals(seller))
+            if (food.getSeller().getId() == sellerId)
             {
                 foodList.add(food);
             }

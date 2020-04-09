@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8db455f9-a442-4620-8d58-4ae0ecbc9aa9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/PriceCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFood/DatabaseCustomer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFood/DatabaseFood.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFood/DatabasePromo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JFood/DatabaseSeller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseCustomer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseFood.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabasePromo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabasePromo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseSeller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseSeller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PromoCodeAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PromoCodeAlreadyExistException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +64,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="103" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1585817778337" />
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser" timestamp="1586430011543">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="574" y="142" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1586430011543" />
     <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1585920221152">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
