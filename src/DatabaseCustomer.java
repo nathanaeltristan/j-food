@@ -8,30 +8,44 @@ import java.util.ArrayList;
  */
 public class DatabaseCustomer
 {
-
-    private static final ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+    // instance variables - replace the example below with your own
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int lastId = 0;
 
+    /**
+     * Constructor for objects of class DatabaseCustomer
+     */
+    public DatabaseCustomer()
+    {
+    }
+
+    /**
+     * Method to show customer database
+     * @return customer database
+     */
     public static ArrayList<Customer> getCustomerDatabase()
     {
-
         return CUSTOMER_DATABASE;
-
     }
 
+    /**
+     * Method to show last id
+     * @return last id in database
+     */
     public static int getLastId()
     {
-
         return lastId;
-
     }
 
+    /**
+     * Method to show customer by id
+     * @return customer
+     */
     public static Customer getCustomerById(int id) throws CustomerNotFoundException
     {
-
-        for(Customer customer : CUSTOMER_DATABASE)
+        for(Customer customer:CUSTOMER_DATABASE)
         {
-            if (customer.getId() == id)
+            if (id == customer.getId())
             {
                 return customer;
             }
@@ -39,11 +53,15 @@ public class DatabaseCustomer
         throw new CustomerNotFoundException(id);
     }
 
+    /**
+     * Method to add customer
+     * @return false default return param to check successability
+     */
     public static boolean addCustomer(Customer customer) throws EmailAlreadyExistException
     {
-        for(Customer customer1 : CUSTOMER_DATABASE)
+        for(Customer customers:CUSTOMER_DATABASE)
         {
-            if (customer.getEmail() == customer1.getEmail())
+            if (customers.getEmail() == customer.getEmail())
             {
                 throw new EmailAlreadyExistException(customer);
             }
@@ -51,30 +69,24 @@ public class DatabaseCustomer
         CUSTOMER_DATABASE.add(customer);
         lastId = customer.getId();
         return true;
-
     }
 
+    /**
+     * Method to remove customer
+     * @return false default return param to check successability
+     */
     public static boolean removeCustomer(int id) throws CustomerNotFoundException
     {
-
-        for(Customer customer : CUSTOMER_DATABASE)
+        for(int i = 0;  i < CUSTOMER_DATABASE.size(); i++)
         {
-            if (customer.getId() == id)
+            Customer customer = CUSTOMER_DATABASE.get(i);
+            if (id == customer.getId())
             {
-                CUSTOMER_DATABASE.remove(customer);
+                CUSTOMER_DATABASE.remove(id);
                 return true;
             }
         }
         throw new CustomerNotFoundException(id);
-
     }
-
-
-    /**
-     * getListCustomer() is used to return the current list of seller
-     *
-     * @return    listSeller that contains some String
-     */
-
 
 }

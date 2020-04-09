@@ -24,7 +24,7 @@ public class JFood
 
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId() + 1, "John", "john@gmail.com", "085155343144", location));
 
-        //Calendar calendar = new GregorianCalendar(2020,04,02);
+        Calendar calendar = new GregorianCalendar(2020,04,02);
 
         //DatabaseFood.addFood(new Food(1, "Caramel Macchiato", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 45000, FoodCategory.COFFEE));
         //DatabaseFood.addFood(new Food(2, "Asian Dolce Latte", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 25000, FoodCategory.COFFEE));
@@ -86,223 +86,35 @@ public class JFood
        // }
 
        // DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastId())));
-        try
-        {
-            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "palugada", 10000, 20000, false));
-        }
-        catch(PromoCodeAlreadyExistException error)
-        {
-          System.out.println(error.getMessage());
-        }
 
-        try
-        {
-            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "palugada", 15000, 20000, true));
+        //Email
+        try {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Rama", "rama@ui.ac.id", "Password2123"));
         }
-        catch(PromoCodeAlreadyExistException error)
-        {
-            System.out.println(error.getMessage());
-        }
-
-        try
-        {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "1234"));
-        }
-        catch(EmailAlreadyExistException error)
-        {
-            System.out.println(error.getMessage());
-        }
-
-        try
-        {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "1a2b3c4d"));
-        }
-        catch(EmailAlreadyExistException error)
-        {
-            System.out.println(error.getMessage());
-        }
-
-        try
-        {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Rama", "rama@gmail.com", "asleb"));
-        }
-        catch(EmailAlreadyExistException error)
-        {
-            System.out.println(error.getMessage());
-        }
-
-        try
-        {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "wkwkwk"));
-        }
-        catch(EmailAlreadyExistException error)
-        {
-            System.out.println(error.getMessage());
+        catch (EmailAlreadyExistException e){
+            System.out.println(e.getMessage());
         }
 
         try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 1", DatabaseSeller.getSellerByID(1), 10000, FoodCategory.RICE));
-
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Hizkia", "hizkia@gmail.com", "wkwkwkwk123"));
         }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
+        catch (EmailAlreadyExistException e){
+            System.out.println(e.getMessage());
         }
 
         try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 2", DatabaseSeller.getSellerByID(1), 15000, FoodCategory.RICE));
-
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Tristan", "tristan@gmail.com", "bukanwibU11",calendar));
         }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
+        catch (EmailAlreadyExistException e){
+            System.out.println(e.getMessage());
         }
 
         try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 3", DatabaseSeller.getSellerByID(1), 20000, FoodCategory.RICE));
-
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Tristan", "tristan@gmail.com", "bukanwibU11", 2020, 4, 9));
         }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
+        catch (EmailAlreadyExistException e){
+            System.out.println(e.getMessage());
         }
-
-        ////////////////////////////////////////////////////////////////////
-
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "Abcd1234"));
-
-        }
-        catch(EmailAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "12345", 7000, 5000, true));
-
-        }
-        catch(PromoCodeAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabasePromo.removePromo(3);
-
-        }
-        catch(PromoNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseSeller.getSellerByID(2);
-
-        }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseFood.getFoodByID(5);
-
-        }
-        catch(FoodNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseCustomer.getCustomerByID(4);
-
-        }
-        catch(CustomerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        System.out.println("=============================YANG MASUK DATABASE PROMO============================");
-        System.out.println(DatabasePromo.getPromoDatabase());
-        System.out.println("=============================YANG MASUK DATABASE SELLER============================");
-        System.out.println(DatabaseSeller.getSellerDatabase());
-        System.out.println("=============================YANG MASUK DATABASE FOOD============================");
-        System.out.println(DatabaseFood.getFoodDatabase());
-        System.out.println("=============================YANG MASUK DATABASE CUSTOMER============================");
-        System.out.println(DatabaseCustomer.getCustomerDatabase());
-
-        ArrayList<Food> pertama = new ArrayList<Food>();
-        try {
-
-            pertama.add(DatabaseFood.getFoodByID(1));
-
-        }
-        catch(FoodNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerByID(1)));
-
-        }
-        catch(CustomerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerByID(2)));
-
-        }
-        catch(CustomerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseInvoice.addInvoice(new CashInvoice (DatabaseInvoice.getLastId() + 1, pertama, DatabaseCustomer.getCustomerByID(3)));
-
-        }
-        catch(CustomerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        for(Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
-
-            Thread object = new Thread(new PriceCalculator(invoice));
-            object.start();
-        }
-
-        System.out.println("=============================YANG MASUK DATABASE INVOICE============================");
-        System.out.println(DatabaseInvoice.getInvoiceDatabase());
 
     }
 }

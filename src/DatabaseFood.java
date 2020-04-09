@@ -10,89 +10,123 @@ import java.util.ArrayList;
 
 public class DatabaseFood
 {
-
-    private static final ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
+    // instance variables - replace the example below with your own
+    private static ArrayList<Food> FOOD_DATABASE= new ArrayList<Food>();
     private static int lastId = 0;
 
+    /**
+     * Constructor for objects of class DatabaseFood
+     */
+    public DatabaseFood()
+    {
+    }
+
+    /**
+     * Method to show food list
+     * @return Database of foods
+     */
     public static ArrayList<Food> getFoodDatabase()
     {
-
         return FOOD_DATABASE;
-
     }
 
+    /**
+     * Method to show last id
+     * @return last id in database
+     */
     public static int getLastId()
     {
-
         return lastId;
-
     }
 
+    /**
+     * Method to show food by id
+     * @return food
+     */
     public static Food getFoodById(int id) throws FoodNotFoundException
     {
-        for(Food food : FOOD_DATABASE)
+        for(Food foods:FOOD_DATABASE)
         {
-            if (food.getId() == id)
+            if (id == foods.getId())
             {
-                return food;
+                return foods;
             }
         }
         throw new FoodNotFoundException(id);
     }
 
+    /**
+     * Method to show food by seller
+     * @return food
+     */
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
-        ArrayList<Food> foodList = new ArrayList<Food>();
-        for (Food food : FOOD_DATABASE)
+        ArrayList<Food> seller_foods = new ArrayList<>();
+        for(Food food:FOOD_DATABASE)
         {
-            if (food.getSeller().getId() == sellerId)
+            if (sellerId == food.getSeller().getId())
             {
-                foodList.add(food);
+                seller_foods.add(food);
             }
         }
-        return foodList;
+        return seller_foods;
     }
 
-    public static ArrayList<Food> getFoodByCategory(FoodCategory foodCategory)
+    /**
+     * Method to show food by category
+     * @return food
+     */
+    public static ArrayList<Food> getFoodByCategory(FoodCategory category)
     {
-        ArrayList<Food> foodList = new ArrayList<Food>();
-        for(Food food : FOOD_DATABASE)
-        {
-            if (food.getCategory().equals(foodCategory))
+        ArrayList<Food> categoryFoods = new ArrayList<>();
+        for(Food food:FOOD_DATABASE) {
+            if (category == food.getCategory())
             {
-                foodList.add(food);
+                categoryFoods.add(food);
             }
         }
-        return foodList;
+        if (categoryFoods == null)
+        {
+            return null;
+        } else
+        {
+            return categoryFoods;
+        }
     }
 
+    /**
+     * Method to add food
+     * @return false default return param to check successability
+     */
     public static boolean addFood(Food food)
     {
-
+        for(Food foodCheck:FOOD_DATABASE)
+        {
+            if (foodCheck.getId() == food.getId())
+            {
+                return false;
+            }
+        }
         FOOD_DATABASE.add(food);
         lastId = food.getId();
         return true;
-
     }
 
+    /**
+     * Method to remove food
+     * @return false default return param to check successability
+     */
     public static boolean removeFood(int id) throws FoodNotFoundException
     {
-
-        for(Food food : FOOD_DATABASE)
+        for(int i = 0;  i < FOOD_DATABASE.size(); i++)
         {
-            if (food.getId() == id)
+            Food food = FOOD_DATABASE.get(i);
+            if (id == food.getId())
             {
-                FOOD_DATABASE.remove(food);
+                FOOD_DATABASE.remove(id);
                 return true;
             }
         }
         throw new FoodNotFoundException(id);
     }
-    /**
-     * getListFood() is used to return the current list of food
-     *
-     * @return    listFood that contains some String
-     */
-
-
 }

@@ -24,63 +24,57 @@ public class Promo
         this.minPrice = minPrice;
         this.active = active;
     }
-    
+
     public int getId()
     {
         return id;
     }
-    
     public String getCode()
     {
         return code;
     }
-    
     public int getDiscount()
     {
         return discount;
     }
-    
     public int getMinPrice()
     {
         return minPrice;
     }
-    
     public boolean getActive()
     {
         return active;
     }
-    
     public void setId(int id)
     {
         this.id = id;
     }
-    
     public void setCode(String code)
     {
         this.code = code;
     }
-    
     public void setDiscount(int discount)
     {
         this.discount = discount;
     }
-    
     public void setMinPrice(int minPrice)
     {
         this.minPrice = minPrice;
     }
-    
     public void setActive(boolean active)
     {
         this.active = active;
     }
-    
+    /**
+     * Method to set all variables Promo to String
+     */
     public String toString()
     {
-        return "Id = " + getId() 
-        + "Code = " + getCode() 
-        + "Discount = " + getDiscount() 
-        + "Min Price " + getDiscount() 
-        + "Active Status" + getActive();
+        return  "==========Promo==========" +
+                "\nId: " + getId() +
+                "\nCode: " + getCode() +
+                "\nDiscount: " + getDiscount() +
+                "\nMin Price: " + getMinPrice() +
+                "\nActive Status: " + getActive() + "\n";
     }
 }

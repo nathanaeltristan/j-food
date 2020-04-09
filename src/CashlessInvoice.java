@@ -11,8 +11,8 @@ import java.text.*;
  */
 public class CashlessInvoice extends Invoice
 {
-
-    private static PaymentType PAYMENT_TYPE = PaymentType.CASHLESS;
+    // instance variables - replace the example below with your own
+    private static final PaymentType PAYMENT_TYPE = PaymentType.CASHLESS;
     private Promo promo;
 
     /**
@@ -20,79 +20,42 @@ public class CashlessInvoice extends Invoice
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
-
-        super(id, foods, customer);
-
+        super(id,foods, customer);
     }
 
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
-
-        super(id, foods, customer);
+        super(id,foods, customer);
         this.promo = promo;
-
     }
 
-    /**
-     * getPaymentType() is used to return Invoice's payment method
-     *
-     * @return    the paymentType of CashlessInvoice instance
-     */
+    //@Override
     public PaymentType getPaymentType()
     {
-
         return PAYMENT_TYPE;
-
     }
 
-    /**
-     * getPromo() is used to return CashlessInvoice's promotion
-     *
-     * @return    the promo of CashlessInvoice instance
-     */
     public Promo getPromo()
     {
-
-        return promo;
-
+        return this.promo;
     }
 
-    /**
-     * setPromo() is used to change CashlessInvoice's promotion
-     *
-     * @param   promo to overwrite the current instance's promo
-     */
     public void setPromo(Promo promo)
     {
-
         this.promo = promo;
-
     }
 
-    /**
-     * setTotalPrice() is used to change Invoice's total price
-     *
-     */
     public void setTotalPrice()
     {
-        int tempPrice = 0;
-        for (Food food : getFoods())
+        super.totalPrice = 0;
+        for(Food foods: getFoods())
         {
-            tempPrice += food.getPrice();
+            if ((promo != null) && (promo.getActive() == true) && (foods.getPrice() >= promo.getMinPrice())) {
+                super.totalPrice += foods.getPrice() - promo.getDiscount();
+            } else {
+                super.totalPrice += foods.getPrice();
+            }
         }
-        if (getPromo() != null && getPromo().getActive() == true && tempPrice > getPromo().getMinPrice())
-        {
-
-            this.totalPrice = (tempPrice - getPromo().getDiscount());
-
-        }
-        else
-        {
-
-            this.totalPrice = tempPrice;
-
-        }
-
     }
 
     public String toString()
@@ -108,8 +71,7 @@ public class CashlessInvoice extends Invoice
         String date = format1.format(getDate().getTime());
         if (getPromo() != null && getPromo().getActive() == true && tempPrice > getPromo().getMinPrice())
         {
-
-            return "\n================Invoice================" + "\n" +
+            return "================Invoice================" + "\n" +
                     "ID: " + getId() + "\n" +
                     "Name: " + foodName + "\n" +
                     "Date: " + date + "\n" +
@@ -118,13 +80,10 @@ public class CashlessInvoice extends Invoice
                     "Total Price: " + totalPrice + "\n" +
                     "Status: " + getInvoiceStatus() + "\n" +
                     "Payment Type: " + getPaymentType() + "\n";
-
-
         }
         else
         {
-
-            return "\n================Invoice================" + "\n" +
+            return "================Invoice================" + "\n" +
                     "ID: " + getId() + "\n" +
                     "Name: " + foodName + "\n" +
                     "Date: " + date + "\n" +
@@ -132,8 +91,6 @@ public class CashlessInvoice extends Invoice
                     "Total Price: " + totalPrice + "\n" +
                     "Status: " + getInvoiceStatus() + "\n" +
                     "Payment Type: " + getPaymentType() + "\n";
-
         }
-
     }
 }

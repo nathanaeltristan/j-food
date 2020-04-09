@@ -5,11 +5,12 @@ public class EmailAlreadyExistException extends Exception
     public EmailAlreadyExistException(Customer customer_input)
     {
         super("Customer Email: ");
-        customer_error = customer_input;
+        this.customer_error = customer_input;
     }
 
+    @Override
     public String getMessage()
     {
-        return super.getMessage() + customer_error.getEmail() + "not found";
+        return super.getMessage() + customer_error.getEmail() + " already exists";
     }
 }

@@ -2,14 +2,15 @@ public class FoodNotFoundException extends Exception
 {
     private int food_error;
 
-    FoodNotFoundException (int food_input)
+    public FoodNotFoundException(int food_input)
     {
         super("Food ID: ");
-        food_error = food_input;
+        this.food_error = food_input;
     }
 
+    @Override
     public String getMessage()
     {
-        return super.getMessage() + food_error + "not found";
+        return super.getMessage() + food_error + " not found";
     }
 }
