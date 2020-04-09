@@ -1,6 +1,6 @@
 public class PriceCalculator implements Runnable
 {
-    Invoice invoice;
+    private Invoice invoice;
 
     public PriceCalculator(Invoice invoice)
     {
@@ -10,8 +10,8 @@ public class PriceCalculator implements Runnable
     @Override
     public void run()
     {
-        System.out.println("Calculating Invoice ID: " +invoice.getId());
+        System.out.println("Calculating Invoice ID: " + invoice.getId());
             invoice.setTotalPrice();
-        System.out.println("Finish Calculating Invoice ID: " +invoice.getId());
+        System.out.println("Finish Calculating Invoice ID: " + invoice.getId());
     }
 }

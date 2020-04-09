@@ -20,9 +20,9 @@ public class JFood
 {
     public static void main(String[] args_)
     {
-        //Location location = new Location("Jakarta", "Capital", "Kebayoran Lama Utara");
+        Location location = new Location("Jakarta", "Capital", "Kebayoran Lama Utara");
 
-        //DatabaseSeller.addSeller(new Seller(29, "John", "john@gmail.com", "085155343144", location));
+        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId() + 1, "John", "john@gmail.com", "085155343144", location));
 
         //Calendar calendar = new GregorianCalendar(2020,04,02);
 
@@ -82,16 +82,105 @@ public class JFood
 
        // for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
        // {
-            invoice.setInvoiceStatus(InvoiceStatus.FINISHED);
+        //    invoice.setInvoiceStatus(InvoiceStatus.FINISHED);
        // }
 
        // DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastId())));
+        try
+        {
+            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "palugada", 10000, 20000, false));
+        }
+        catch(PromoCodeAlreadyExistException error)
+        {
+          System.out.println(error.getMessage());
+        }
+
+        try
+        {
+            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "palugada", 15000, 20000, true));
+        }
+        catch(PromoCodeAlreadyExistException error)
+        {
+            System.out.println(error.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "1234"));
+        }
+        catch(EmailAlreadyExistException error)
+        {
+            System.out.println(error.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "1a2b3c4d"));
+        }
+        catch(EmailAlreadyExistException error)
+        {
+            System.out.println(error.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Rama", "rama@gmail.com", "asleb"));
+        }
+        catch(EmailAlreadyExistException error)
+        {
+            System.out.println(error.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "wkwkwk"));
+        }
+        catch(EmailAlreadyExistException error)
+        {
+            System.out.println(error.getMessage());
+        }
+
         try {
 
-            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "12345", 10000, 5000, false));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 1", DatabaseSeller.getSellerByID(1), 10000, FoodCategory.RICE));
 
         }
-        catch(PromoCodeAlreadyExistsException | PromoCodeAlreadyExistException error){
+        catch(SellerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        try {
+
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 2", DatabaseSeller.getSellerByID(1), 15000, FoodCategory.RICE));
+
+        }
+        catch(SellerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        try {
+
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Hemat Sengketa 3", DatabaseSeller.getSellerByID(1), 20000, FoodCategory.RICE));
+
+        }
+        catch(SellerNotFoundException error){
+
+            System.out.println(error.getMessage());
+
+        }
+
+        ////////////////////////////////////////////////////////////////////
+
+        try {
+
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "Abcd1234"));
+
+        }
+        catch(EmailAlreadyExistException error){
 
             System.out.println(error.getMessage());
 
@@ -102,116 +191,7 @@ public class JFood
             DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "12345", 7000, 5000, true));
 
         }
-        catch(PromoCodeAlreadyExistsException | PromoCodeAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-
-
-        Location baselocation = new Location("Jakarta Selatan", "Capital", "Kebayoran Lama Utara");
-
-        
-
-        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId() + 1, "Tristan", "tristan@gmail.com", "081380744170", location));
-
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Gilli", "gilbert@gmail.com", "1234"));
-
-        }
-        catch(EmailAlreadyExistsException | EmailAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Gilli", "gilbert@gmail.com", "Abcd1234"));
-        }
-        catch(EmailAlreadyExistsException | EmailAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Frenzel", "frenzel@gmail.com", "gilbert"));
-
-        }
-        catch(EmailAlreadyExistsException | EmailAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Gilbert", "gilli@gmail.com", "ulala"));
-
-        }
-        catch(EmailAlreadyExistsException | EmailAlreadyExistException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        //System.out.println(DatabaseCustomer.getCustomerDatabase());
-
-        try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Sehat Bahari 1", DatabaseSeller.getSellerByID(1), 15000, FoodCategory.Beverages));
-
-        }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Sehat Bahari 2", DatabaseSeller.getSellerByID(1), 3000, FoodCategory.Beverages));
-
-        }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Paket Sehat Bahari 3", DatabaseSeller.getSellerByID(1), 5000, FoodCategory.Japanese));
-
-        }
-        catch(SellerNotFoundException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////
-        try {
-
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Gilli", "gilbert@gmail.com", "Abcd1234"));
-
-        }
-        catch(EmailAlreadyExistsException error){
-
-            System.out.println(error.getMessage());
-
-        }
-
-        try {
-
-            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, "12345", 7000, 5000, true));
-
-        }
-        catch(PromoCodeAlreadyExistsException error){
+        catch(PromoCodeAlreadyExistException error){
 
             System.out.println(error.getMessage());
 
@@ -319,7 +299,10 @@ public class JFood
 
             Thread object = new Thread(new PriceCalculator(invoice));
             object.start();
-
         }
+
+        System.out.println("=============================YANG MASUK DATABASE INVOICE============================");
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
+
     }
 }
