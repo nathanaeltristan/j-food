@@ -12,7 +12,7 @@ public class DatabasePromo
 {
 
     private static final ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
-    private static int lastId;
+    private static int lastId = 0;
 
     public static ArrayList<Promo> getPromoDatabase()
     {
@@ -46,7 +46,7 @@ public class DatabasePromo
 
         for(Promo promo : PROMO_DATABASE)
         {
-            if (promo.getCode() == code)
+            if (promo.getCode().equals(code))
             {
                 return promo;
             }
@@ -54,23 +54,22 @@ public class DatabasePromo
         return null;
     }
 
-    public static boolean addPromo(Promo promo)
+    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExist
     {
-
-        for (Promo promo1 : PROMO_DATABASE)
+        for (int i = 0, i < PROMO_DATABASE.size(); i++)
         {
-            if (promo.getCode() == promo1.getCode())
+            if (promo.getCode().equals(PROMO_DATABASE.get(i).getCode()))
             {
-                return false;
+                throw new PromoCodeAlreadyExist(promo);
             }
         }
         PROMO_DATABASE.add(promo);
-        lastId = promo.getId();
+        lastId = promo.getId() + 1;
         return true;
 
     }
 
-    public static boolean activePromo(int id)
+    public static boolean activatePromo(int id)
     {
         for (Promo promo : PROMO_DATABASE)
         {
@@ -83,7 +82,7 @@ public class DatabasePromo
         return false;
     }
 
-    public static boolean deactivePromo(int id)
+    public static boolean deactivatePromo(int id)
     {
         for (Promo promo : PROMO_DATABASE)
         {
@@ -108,7 +107,6 @@ public class DatabasePromo
             }
         }
         return false;
-
     }
 
     /**

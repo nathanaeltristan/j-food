@@ -17,7 +17,6 @@ public class Customer
     private String email;
     private String password;
     private Calendar joinDate;
-    private String print;
 
 
     /**
@@ -34,7 +33,7 @@ public class Customer
         this.name = name;
         setEmail(email);
         setPassword(password);
-        this.joinDate = joinDate;
+        this.joinDate.add(Calendar.MONTH,-1);
     }
 
     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
@@ -43,13 +42,14 @@ public class Customer
         this.name = name;
         setEmail(email);
         setPassword(password);
-        this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
     }
 
     public Customer(int id, String name, String email, String password)
     {
         this.id = id;
         this.name = name;
+        this.joinDate = Calendar.getInstance();
         setEmail(email);
         setPassword(password);
     }
@@ -122,7 +122,7 @@ public class Customer
     */
     public void setEmail(String email)
     {
-        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if(matcher.matches()==true)
@@ -174,29 +174,15 @@ public class Customer
     
     /**
     * Method to set all variables of Customer to String
-    */    
+    */
     public String toString()
-    {   
-        SimpleDateFormat ft = new SimpleDateFormat ("dd MMMM yyyy");
-        if(joinDate != null)
-        {
-            print = "Id = " + getId() 
-            + "\nName = " + getName() 
-            + "\nEmail = " + getEmail() 
-            + "\nPassword = " + getPassword() 
-            + "\nJoin Date = " + ft.format(joinDate.getTime()).toString() 
-            +"\n\n\n";
-        }
-        
-        else if(joinDate == null)
-        {
-            print = "Id = " + getId() 
-            + "\nName = " + getName() 
-            + "\nEmail = " + getEmail() 
-            + "\nPassword = " + getPassword() 
-            + "\n\n\n";
-        }
-        
-        return print;
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        return "===Customer==="+
+                "\nId: "+id+
+                "\nNama: "+name+
+                "\nEmail: "+email+
+                "\nJoinDate :"+sdf.format(getJoinDate().getTime())+
+                "\nPassword: "+password;
     }
 }

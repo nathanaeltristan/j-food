@@ -35,10 +35,11 @@ public class DatabaseInvoice
 
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
-        ArrayList<Invoice> temp = new ArrayList<Invoice>();
+        ArrayList<Invoice> temp = new ArrayList<>();
+        Customer customer = DatabaseCustomer.getCustomerById(customerId);
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if (invoice.getCustomer().getId() == customerId)
+            if (invoice.getCustomer().equals(customer))
             {
                 temp.add(invoice);
             }
@@ -48,26 +49,24 @@ public class DatabaseInvoice
 
     public static boolean addInvoice(Invoice invoice)
     {
-
-        if (invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING))
+        int customerId = invoice.getCustomer().getId();
+        for (Invoice invoice1 : INVOICE_DATABASE)
         {
-            return false;
+            if (invoice1.getCustomer().getId() == customerId && invoice1.getInvoiceStatus() == InvoiceStatus.ONGOING)
+            {
+                return false;
+            }
         }
-        else
-        {
-            INVOICE_DATABASE.add(invoice);
-            lastId = invoice.getId();
-            return true;
-
-        }
-
+        INVOICE_DATABASE.add(invoice);
+        lastId = invoice.getId();
+        return true;
     }
 
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus)
     {
         for (Invoice invoice : INVOICE_DATABASE)
         {
-            if (invoice.getId() == id)
+            if (invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING))
             {
                 invoice.setInvoiceStatus(invoiceStatus);
                 return true;
@@ -78,7 +77,6 @@ public class DatabaseInvoice
 
     public static boolean removeInvoice(int id)
     {
-
         for(Invoice invoice : INVOICE_DATABASE)
         {
             if (invoice.getId() == id)
@@ -88,7 +86,6 @@ public class DatabaseInvoice
             }
         }
         return false;
-
     }
 
     /**

@@ -28,9 +28,8 @@ public class DatabaseFood
 
     }
 
-    public static Food getFoodById(int id)
+    public static Food getFoodById(int id) throws FoodNotFoundException
     {
-
         for(Food food : FOOD_DATABASE)
         {
             if (food.getId() == id)
@@ -38,47 +37,34 @@ public class DatabaseFood
                 return food;
             }
         }
-        return null;
+        throw new FoodNotFoundException(id);
     }
 
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
-        ArrayList<Food> temp = new ArrayList<Food>();
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        Seller seller = DatabaseSeller.getSellerById(sellerId);
         for(Food food : FOOD_DATABASE)
         {
-            if (food.getSeller().getId() == sellerId)
+            if (food.getSeller().equals(seller))
             {
-                temp.add(food);
+                foodList.add(food);
             }
         }
-        if (temp == null)
-        {
-            return null;
-        }
-        else
-        {
-            return temp;
-        }
+        return foodList;
     }
 
-    public static ArrayList<Food> getFoodByCategory(FoodCategory category)
+    public static ArrayList<Food> getFoodByCategory(FoodCategory foodCategory)
     {
-        ArrayList<Food> temp = new ArrayList<Food>();
+        ArrayList<Food> foodList = new ArrayList<Food>();
         for(Food food : FOOD_DATABASE)
         {
-            if (food.getCategory() == category)
+            if (food.getCategory().equals(foodCategory))
             {
-                temp.add(food);
+                foodList.add(food);
             }
         }
-        if (temp == null)
-        {
-            return null;
-        }
-        else
-        {
-            return temp;
-        }
+        return foodList;
     }
 
     public static boolean addFood(Food food)
@@ -102,7 +88,6 @@ public class DatabaseFood
             }
         }
         return false;
-
     }
     /**
      * getListFood() is used to return the current list of food

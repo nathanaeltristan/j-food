@@ -39,13 +39,13 @@ public class DatabaseCustomer
         return null;
     }
 
-    public static boolean addCustomer(Customer customer)
+    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistException
     {
         for(Customer customer1 : CUSTOMER_DATABASE)
         {
-            if (customer.getEmail() == customer1.getEmail())
+            if (customer1.getEmail().equals(customer.getEmail()))
             {
-                return false;
+                throw new EmailAlreadyExistException(customer);
             }
         }
         CUSTOMER_DATABASE.add(customer);
