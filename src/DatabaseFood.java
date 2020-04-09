@@ -76,7 +76,7 @@ public class DatabaseFood
 
     }
 
-    public static boolean removeFood(int id)
+    public static boolean removeFood(int id) throws FoodNotFoundException
     {
 
         for(Food food : FOOD_DATABASE)
@@ -87,7 +87,7 @@ public class DatabaseFood
                 return true;
             }
         }
-        return false;
+        throw new FoodNotFoundException(id);
     }
     /**
      * getListFood() is used to return the current list of food

@@ -54,17 +54,18 @@ public class DatabasePromo
         return null;
     }
 
-    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExist
+    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistException
     {
-        for (int i = 0, i < PROMO_DATABASE.size(); i++)
+
+        for (Promo promo1 : PROMO_DATABASE)
         {
-            if (promo.getCode().equals(PROMO_DATABASE.get(i).getCode()))
+            if (promo1.getCode().equals(promo.getCode()))
             {
-                throw new PromoCodeAlreadyExist(promo);
+                throw new PromoCodeAlreadyExistException(promo);
             }
         }
         PROMO_DATABASE.add(promo);
-        lastId = promo.getId() + 1;
+        lastId = promo.getId();
         return true;
 
     }
@@ -95,7 +96,7 @@ public class DatabasePromo
         return false;
     }
 
-    public static boolean removePromo(int id)
+    public static boolean removePromo(int id) throws PromoNotFoundException
     {
 
         for(Promo promo : PROMO_DATABASE)
@@ -106,7 +107,7 @@ public class DatabasePromo
                 return true;
             }
         }
-        return false;
+        throw new PromoNotFoundException(id);
     }
 
     /**
