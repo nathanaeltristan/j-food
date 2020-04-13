@@ -27,7 +27,7 @@ public class DatabaseInvoice
      * Method to show invoice by id
      * @return invoice
      */
-    public static Invoice getInvoiceById(int id)
+    public static Invoice getInvoiceById(int id) throws InvoiceNotFoundException
     {
         for(Invoice invoice : INVOICE_DATABASE)
         {
@@ -36,7 +36,7 @@ public class DatabaseInvoice
                 return invoice;
             }
         }
-        return null;
+        throw new InvoiceNotFoundException(id);
     }
 
     /**
@@ -66,13 +66,13 @@ public class DatabaseInvoice
      * Method to add invoice
      * @return false default return param to check successability
      */
-    public static boolean addInvoice(Invoice invoice)
+    public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistException
     {
         for(Invoice invoiceCheck:INVOICE_DATABASE)
         {
             if (invoiceCheck.getCustomer() == invoice.getCustomer() && invoiceCheck.getInvoiceStatus() == InvoiceStatus.ONGOING)
             {
-                return false;
+                throw new OngoingInvoiceAlreadyExistException(invoice);
             }
         }
         INVOICE_DATABASE.add(invoice);
@@ -101,7 +101,7 @@ public class DatabaseInvoice
      * Method to remove invoice
      * @return false default return param to check successability
      */
-    public static boolean removeInvoice(int id)
+    public static boolean removeInvoice(int id) throws InvoiceNotFoundException
     {
         for(int i = 0;  i < INVOICE_DATABASE.size(); i++)
         {
@@ -112,6 +112,6 @@ public class DatabaseInvoice
                 return true;
             }
         }
-        return false;
+        throw new InvoiceNotFoundException(id);
     }
 }

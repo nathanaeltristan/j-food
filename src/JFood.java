@@ -231,6 +231,10 @@ public class JFood {
         catch(CustomerNotFoundException e){
             System.out.println(e.getMessage());
         }
+        catch(OngoingInvoiceAlreadyExistException o)
+        {
+            System.out.println(o.getMessage());
+        }
 
         try {
             DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, newFood2, DatabaseCustomer.getCustomerById(2), 6000));
@@ -238,12 +242,20 @@ public class JFood {
         catch(CustomerNotFoundException e){
             System.out.println(e.getMessage());
         }
+        catch(OngoingInvoiceAlreadyExistException o)
+        {
+            System.out.println(o.getMessage());
+        }
 
         try {
             DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, newFood3, DatabaseCustomer.getCustomerById(3), 7000));
         }
         catch(CustomerNotFoundException e){
             System.out.println(e.getMessage());
+        }
+        catch(OngoingInvoiceAlreadyExistException o)
+        {
+            System.out.println(o.getMessage());
         }
 
         //Kalkulasi Invoice
