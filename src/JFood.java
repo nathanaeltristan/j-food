@@ -99,13 +99,13 @@ public class JFood {
         }
 
         try {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "bukanwibU11", calendar));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "bukanwibU11"));
         } catch (EmailAlreadyExistException e) {
             System.out.println(e.getMessage());
         }
 
         try {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "bukanwibU11", 2020, 4, 9));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId() + 1, "Tristan", "tristan@gmail.com", "bukanwibU11"));
         } catch (EmailAlreadyExistException e) {
             System.out.println(e.getMessage());
         }
