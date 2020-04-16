@@ -30,12 +30,9 @@ public class CustomerController {
                                      @RequestParam(value="password") String password)
     {
         Customer customer = new Customer(DatabaseCustomer.getLastId()+1, name, email, password);
-        try
-        {
+        try {
             DatabaseCustomer.addCustomer(customer);
-        }
-        catch (EmailAlreadyExistException e)
-        {
+        } catch (EmailAlreadyExistException e) {
             e.getMessage();
             return null;
         }
@@ -47,8 +44,6 @@ public class CustomerController {
                                   @RequestParam(value="email") String email,
                                   @RequestParam(value="password") String password)
     {
-        Customer customerLogin = null;
-        customerLogin = DatabaseCustomer.getCostumerLogin(email, password);
-        return customerLogin;
+        return DatabaseCustomer.getCustomerLogin(email, password);
     }
 }
