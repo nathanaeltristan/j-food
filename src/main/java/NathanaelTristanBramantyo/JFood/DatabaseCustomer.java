@@ -90,4 +90,16 @@ public class DatabaseCustomer
         throw new CustomerNotFoundException(id);
     }
 
+    public static Customer getCostumerLogin(String email, String password)
+    {
+        for(Customer cust : CUSTOMER_DATABASE)
+        {
+            if(cust.getEmail().equals(cust.getEmail()) && cust.getPassword().equals(cust.getPassword()))
+            {
+                return cust;
+            }
+        }
+        return null;
+    }
+
 }
