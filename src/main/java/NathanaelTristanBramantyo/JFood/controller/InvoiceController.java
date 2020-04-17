@@ -84,20 +84,24 @@ public class InvoiceController
         ArrayList<Food> foods = new ArrayList<>();
         for (int food : foodIdList)
         {
-            try {
+            try
+            {
                 foods.add(DatabaseFood.getFoodById(food));
-            } catch (FoodNotFoundException e) {
+            }
+            catch (FoodNotFoundException e)
+            {
                 System.out.println(e.getMessage());
             }
         }
 
         try
         {
-            Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId()+1, foods,
-                    DatabaseCustomer.getCustomerById(customerId), deliveryFee);
+            Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId()+1, foods, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
             DatabaseInvoice.addInvoice(invoice);
             return invoice;
-        } catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistException e) {
+        }
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistException e)
+        {
             System.out.println(e.getMessage());
             return null;
         }
@@ -110,19 +114,27 @@ public class InvoiceController
                                       @RequestParam(value="promoCode") String promoCode)
     {
         ArrayList<Food> foods = new ArrayList<>();
-        for (int food : foodIdList) {
-            try {
+        for (int food : foodIdList)
+        {
+            try
+            {
                 foods.add(DatabaseFood.getFoodById(food));
-            } catch (FoodNotFoundException e) {
+            }
+            catch (FoodNotFoundException e)
+            {
                 System.out.println(e.getMessage());
             }
         }
-        try {
+
+        try
+        {
             Invoice invoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods,
                     DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
             DatabaseInvoice.addInvoice(invoice);
             return invoice;
-        } catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistException e) {
+        }
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistException e)
+        {
             System.out.println(e.getMessage());
             return null;
         }
