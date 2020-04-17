@@ -76,8 +76,8 @@ public class InvoiceController
     }
 
     @RequestMapping(value = "/invoice/createCashInvoice", method = RequestMethod.POST)
-    public Invoice addCashlessInvoice(@RequestParam(value = "foodList")ArrayList<Integer> foodList,
-                                      @RequestParam)
+    public Invoice addCashlessInvoice(@RequestParam(value = "foodIdList")ArrayList<Integer> foodList,
+                                      @RequestParam(value = ))
     {
         Invoice cashlessInvoice = null;
         ArrayList<Food> foodList = new ArrayList<>();
@@ -95,7 +95,7 @@ public class InvoiceController
 
         try
         {
-            cashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foodList, DatabaseCustomer.getCustomerLogin())
+            cashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foodList, DatabaseCustomer.getCustomerById(1));
         }
         catch (CustomerNotFoundException c)
         {
