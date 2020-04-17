@@ -43,6 +43,7 @@ public class DatabaseInvoice
     /**
      * Method to show invoice by customer
      * @return invoice
+     * @param customerId
      */
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
