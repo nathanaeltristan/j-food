@@ -1,4 +1,4 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
 public class FoodNotFoundException extends Exception
 {
     private int food_error;

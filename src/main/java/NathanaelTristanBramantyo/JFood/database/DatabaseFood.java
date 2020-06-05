@@ -1,4 +1,8 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.database;
+import NathanaelTristanBramantyo.JFood.Food;
+import NathanaelTristanBramantyo.JFood.FoodCategory;
+import NathanaelTristanBramantyo.JFood.exception.FoodNotFoundException;
+
 import java.util.ArrayList;
 
 /**

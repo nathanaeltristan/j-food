@@ -1,6 +1,8 @@
 package NathanaelTristanBramantyo.JFood.controller;
 
 import NathanaelTristanBramantyo.JFood.*;
+import NathanaelTristanBramantyo.JFood.database.DatabasePromo;
+import NathanaelTristanBramantyo.JFood.exception.PromoCodeAlreadyExistException;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 

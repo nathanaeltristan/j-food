@@ -1,4 +1,7 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
+
+import NathanaelTristanBramantyo.JFood.Customer;
+
 public class EmailAlreadyExistException extends Exception
 {
     private Customer customer_error;

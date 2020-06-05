@@ -1,9 +1,9 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
 public class SellerNotFoundException extends Exception
 {
     private int seller_error;
 
-    SellerNotFoundException (int seller_input)
+    public SellerNotFoundException(int seller_input)
     {
         super("Seller ID: ");
         seller_error = seller_input;

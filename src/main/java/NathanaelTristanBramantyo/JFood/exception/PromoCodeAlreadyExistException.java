@@ -1,4 +1,7 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
+
+import NathanaelTristanBramantyo.JFood.Promo;
+
 public class PromoCodeAlreadyExistException extends Exception
 {
     private Promo promo_error;

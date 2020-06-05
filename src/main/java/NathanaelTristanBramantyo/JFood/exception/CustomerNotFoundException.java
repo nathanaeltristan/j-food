@@ -1,4 +1,4 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
 public class CustomerNotFoundException extends Exception
 {
     private int customer_error;

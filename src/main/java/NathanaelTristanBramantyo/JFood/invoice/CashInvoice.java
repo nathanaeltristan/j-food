@@ -1,10 +1,10 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.invoice;
+import NathanaelTristanBramantyo.JFood.Customer;
+import NathanaelTristanBramantyo.JFood.Food;
+import NathanaelTristanBramantyo.JFood.PaymentType;
+
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.*;
-import java.text.*;
 
 /**
  * Write a description of class CashInvoice here.

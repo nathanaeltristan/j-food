@@ -1,4 +1,8 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.invoice;
+import NathanaelTristanBramantyo.JFood.Customer;
+import NathanaelTristanBramantyo.JFood.Food;
+import NathanaelTristanBramantyo.JFood.PaymentType;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 

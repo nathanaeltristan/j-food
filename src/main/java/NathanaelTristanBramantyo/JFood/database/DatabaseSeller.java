@@ -1,4 +1,7 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.database;
+import NathanaelTristanBramantyo.JFood.Seller;
+import NathanaelTristanBramantyo.JFood.exception.SellerNotFoundException;
+
 import java.util.ArrayList;
 
 /**

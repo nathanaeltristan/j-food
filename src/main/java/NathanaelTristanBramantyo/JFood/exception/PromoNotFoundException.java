@@ -1,4 +1,4 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
 public class PromoNotFoundException extends Exception {
 
     private int promo_error;

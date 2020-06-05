@@ -1,4 +1,7 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.exception;
+
+import NathanaelTristanBramantyo.JFood.invoice.Invoice;
+
 public class OngoingInvoiceAlreadyExistException extends Exception
 {
     private Invoice invoice_error;

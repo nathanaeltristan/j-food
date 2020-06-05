@@ -1,4 +1,4 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.invoice;
 /**
  * Enumeration class InvoiceStatus - write a description of the enum class here
  *

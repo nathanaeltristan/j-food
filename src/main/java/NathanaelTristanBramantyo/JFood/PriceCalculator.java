@@ -1,4 +1,7 @@
 package NathanaelTristanBramantyo.JFood;
+
+import NathanaelTristanBramantyo.JFood.invoice.Invoice;
+
 public class PriceCalculator implements Runnable
 {
     private Invoice invoice;

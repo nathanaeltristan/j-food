@@ -1,4 +1,8 @@
-package NathanaelTristanBramantyo.JFood;
+package NathanaelTristanBramantyo.JFood.database;
+import NathanaelTristanBramantyo.JFood.Promo;
+import NathanaelTristanBramantyo.JFood.exception.PromoCodeAlreadyExistException;
+import NathanaelTristanBramantyo.JFood.exception.PromoNotFoundException;
+
 import java.util.ArrayList;
 
 /**
