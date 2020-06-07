@@ -7,6 +7,8 @@ import NathanaelTristanBramantyo.JFood.exception.CustomerNotFoundException;
 import NathanaelTristanBramantyo.JFood.exception.EmailAlreadyExistException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RequestMapping("/customer")
 @CrossOrigin(origins = " ", allowedHeaders = "*")
 @RestController
@@ -14,12 +16,11 @@ public class CustomerController
 {
 
     @RequestMapping("")
-    public String indexPage(@RequestParam(value="name", defaultValue="world") String name)
-    {
-        return "Hello " + name;
+    public ArrayList<Customer> indexPage() {
+        return DatabaseCustomer.getCustomerDatabase();
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/customer/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable int id)
     {
         Customer customer = null;
@@ -34,7 +35,7 @@ public class CustomerController
         return customer;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/customer/{register}", method = RequestMethod.POST)
     public Customer register(@RequestParam(value="name") String name,
                              @RequestParam(value="email") String email,
                              @RequestParam(value="password") String password)
@@ -55,7 +56,7 @@ public class CustomerController
 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/customer/{login}", method = RequestMethod.POST)
     public Customer loginCustomer(@RequestParam(value="email") String email,
                                   @RequestParam(value="password") String password)
     {

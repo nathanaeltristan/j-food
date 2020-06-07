@@ -13,95 +13,101 @@ import java.util.ArrayList;
  */
 public class DatabaseCustomer
 {
-    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
-    private static int lastId = 0;
-
-    public static ArrayList<Customer> getDatabaseCustomer()
-    {
-        return CUSTOMER_DATABASE;
-    }
-
-    /**
-     * getter of customer's last id in the array list database
-     * @return an integer of customer's last id in the database
+    /*
+     * dibawah ini adalah deklarasi variabel untuk class Food
+     * variabel ini akan digunakan untuk menyimpan data yang bersangkutan
      */
-    public static int getLastId()
-    {
-        return lastId;
-    }
+    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistException{
 
-    /**
-     * this method is to return a Customer class object by it's id
-     * @param id is the id of the expected customer that this method returns
-     * @return a Customer object in respect to the id in the parameter id
-     */
-    public static Customer getCustomerById(int id) throws CustomerNotFoundException
-    {
-        for (Customer customer : CUSTOMER_DATABASE)
-        {
-            if (customer.getId() == id)
-            {
-                return customer;
-            }
-        }
-        throw new CustomerNotFoundException(id);
-    }
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
 
-    /**
-     * this method is to add a customer to array list database
-     * @param customer is the Customer object that want to be added to the database
-     * @return a boolean, true if the customer is succeeded to be added to the database, otherwise false
-     * @throws EmailAlreadyExistException is to check whether the email that wanted to be added to database is already exist
-     */
-    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistException
-    {
-        for (Customer iterasi : CUSTOMER_DATABASE)
-        {
-            if(iterasi.getEmail().equals(customer.getEmail()))
-            {
+            if (customer.getEmail().equals(CUSTOMER_DATABASE.get(i).getEmail())){
+
                 throw new EmailAlreadyExistException(customer);
+
             }
+
         }
+
         CUSTOMER_DATABASE.add(customer);
         lastId = customer.getId();
+
         return true;
     }
 
-    /**
-     * this method is to remove the specified customer from the database
-     * @param id is the customer's id to point to the customer that wanted to be removed
-     * @return a boolean, true if the customer is succeeded to be removed from the database, otherwise false
-     * @throws CustomerNotFoundException is to check whether the customer that wanted to be removed from the database is exist or not
-     */
-    public static boolean removeCustomer(int id) throws CustomerNotFoundException
-    {
-        for(Customer customer : CUSTOMER_DATABASE)
-        {
-            if(customer.getId() == id)
-            {
-                CUSTOMER_DATABASE.remove(customer);
-                return true;
+    public static boolean removeCustomer(int id) throws CustomerNotFoundException{
+
+        boolean status = false;
+
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
+
+            if (id == CUSTOMER_DATABASE.get(i).getId()){
+
+                CUSTOMER_DATABASE.remove(i);
+                status = true;
+
             }
+
         }
+
         throw new CustomerNotFoundException(id);
+
     }
+
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
+
+    private static int lastId = 0;
 
     /**
-     * this method is check if the email and the password match for any customer
-     * @param email is the customer's email that wanted to be match to the password
-     * @param password is the customer's password for the email in this method's parameter
-     * @return a boolean, true if the email and the password match for any Customer's object in the database that have the specified email, otherwise returns false
+     * Method untuk mendapatkan nilai dari listSeller
+     * @return variabel listSeller
      */
-    public static Customer getCustomerLogin(String email, String password)
-    {
-        for(Customer customers : CUSTOMER_DATABASE)
-        {
-            if(customers.getEmail().equals(email) && customers.getPassword().equals(password))
-            {
-                return customers;
-            }
-        }
-        return null;
+    /*
+     * method ini digunakan untuk mendapatkan nilai dari category
+     * hasilnya method ini akan mengembalikan nilai category
+     */
+
+    public static ArrayList<Customer> getCustomerDatabase(){
+
+        return CUSTOMER_DATABASE;
+
     }
 
+    public static int getLastId(){
+
+        return lastId;
+
+    }
+
+    public static Customer getCustomerById (int id) throws CustomerNotFoundException{
+
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
+
+            if (id == CUSTOMER_DATABASE.get(i).getId()){
+
+                return CUSTOMER_DATABASE.get(i);
+
+            }
+
+        }
+
+        throw new CustomerNotFoundException(id);
+
+    }
+
+    public static Customer getCustomerLogin (String email, String password){
+
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
+
+            if (email.equals(CUSTOMER_DATABASE.get(i).getEmail()) && password.equals(CUSTOMER_DATABASE.get(i).getPassword())){
+
+                return CUSTOMER_DATABASE.get(i);
+
+            }
+
+        }
+
+        return null;
+
+    }
 }
