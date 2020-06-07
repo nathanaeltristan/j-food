@@ -5,6 +5,7 @@ package NathanaelTristanBramantyo.JFood;
  * @author (your name here)
  * @version (version number or date here)
  */
+
 public enum FoodCategory
 {
     BEVERAGES("Beverages"),

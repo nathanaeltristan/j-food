@@ -10,87 +10,84 @@ package NathanaelTristanBramantyo.JFood;
 
 public class Location
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private String province;        //provinsi lokasi penjualan makanan
-    private String description;     //deskripsi dari provinsi lokasi penjualan makanan
-    private String city;            //kota lokasi penjualan makanan
+    private String province;
+    private String city;
+    private String description;
 
-    
-    /* Bagian ini adalah constructor dari class Location */
     /**
-     * @param province
-     * @param description
-     * @param city
+     * Constructor for initiate the location
+     * @param province is the the province name
+     * @param city is the city name
+     * @param description is the desc. of the city
      */
-    public Location(String province, String description, String city)
+    public Location(String province, String city, String description)
     {
         this.province = province;
-        this.description = description;
         this.city = city;
+        this.description = description;
     }
 
-    
-    /* Bagian ini adalah bagian method dari class Location. */
-    // ini adalah getter.
     /**
-     * Method yang digunakan untuk mengambil provinsi dari lokasi.
-     * @return province
+     * This method is the getter of province
+     * @return name of the province
      */
     public String getProvince()
     {
         return province;
     }
-    
+
     /**
-     * Method yang digunakan untuk mengambil deskripsi provinsi dari lokasi.
-     * @return description
-     */
-    public String getDescription()
-    {
-        return description;
-    }
-    
-    /**
-     * Method yang digunakan untuk mengambil kota dari lokasi.
-     * @return city
+     * This method is the getter of city name
+     * @return name of the city
      */
     public String getCity()
     {
         return city;
     }
-    
-    // ini adalah setter.
+
     /**
-     * Menetapkan string provinsi awal dari lokasi.
-     * @param province      merupakan provinsi lokasi penjualan
+     * this is the getter of description
+     * @return the description of the city
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+
+    /**
+     * this is the setter of province
+     * @param province is holding the name of the province
      */
     public void setProvince(String province)
     {
         this.province = province;
     }
-    
+
     /**
-     * Menetapkan string deskripsi provinsi awal dari lokasi.
-     * @param description     merupakan deskripsi dari provinsi lokasi
-     */
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-    
-    /**
-     * Menetapkan string kota awal dari lokasi.
-     * @param city              merupakan kota dari lokasi penjualan
+     * this is the setter of city
+     * @param city is holding the name of the city
      */
     public void setCity(String city)
     {
         this.city = city;
     }
-    
+
+    /**
+     * this is the setter of description
+     * @param description is holding the description of the city
+     */
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    /**
+     * this is to print any data in this class
+     */
     public String toString()
     {
-         return "Province = " + getProvince() 
-         + "City = " + getCity() 
-         + "Description = " + getDescription();
+        return "Province = " + getProvince() + "\nCity = " + getCity() +
+                "\nDescription = " + getDescription();
     }
+
 }

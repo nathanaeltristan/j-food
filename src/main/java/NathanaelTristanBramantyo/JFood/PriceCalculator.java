@@ -1,11 +1,8 @@
 package NathanaelTristanBramantyo.JFood;
 
-import NathanaelTristanBramantyo.JFood.invoice.Invoice;
-
 public class PriceCalculator implements Runnable
 {
-    private Invoice invoice;
-
+    Invoice invoice;
     public PriceCalculator(Invoice invoice)
     {
         this.invoice = invoice;
@@ -14,8 +11,9 @@ public class PriceCalculator implements Runnable
     @Override
     public void run()
     {
-        System.out.println("Calculating Invoice ID: " + invoice.getId());
-            invoice.setTotalPrice();
-        System.out.println("Finish Calculating Invoice ID: " + invoice.getId());
+        System.out.println("calculating invoice id: " + invoice.getId());
+        invoice.setTotalPrice();
+        System.out.println("finished calculating invoice id: " + invoice.getId());
     }
+
 }

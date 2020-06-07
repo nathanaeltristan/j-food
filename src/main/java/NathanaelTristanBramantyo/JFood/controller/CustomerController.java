@@ -1,10 +1,6 @@
 package NathanaelTristanBramantyo.JFood.controller;
 
 import NathanaelTristanBramantyo.JFood.*;
-import NathanaelTristanBramantyo.JFood.database.DatabaseCustomer;
-import NathanaelTristanBramantyo.JFood.database.DatabaseCustomerPostgre;
-import NathanaelTristanBramantyo.JFood.exception.CustomerNotFoundException;
-import NathanaelTristanBramantyo.JFood.exception.EmailAlreadyExistException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,10 +13,10 @@ public class CustomerController
 
     @RequestMapping("")
     public ArrayList<Customer> indexPage() {
-        return DatabaseCustomer.getCustomerDatabase();
+        return DatabaseCustomer.getDatabaseCustomer();
     }
 
-    @RequestMapping(value="/customer/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable int id)
     {
         Customer customer = null;
@@ -35,14 +31,14 @@ public class CustomerController
         return customer;
     }
 
-    @RequestMapping(value = "/customer/{register}", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Customer register(@RequestParam(value="name") String name,
                              @RequestParam(value="email") String email,
                              @RequestParam(value="password") String password)
     {
         try
         {
-            return DatabaseCustomerPostgre.insertCustomer(
+            DatabaseCustomerPostgre.insertCustomer(
                     DatabaseCustomerPostgre.getLastCustomerId()+1,
                     name,
                     email,
@@ -54,9 +50,12 @@ public class CustomerController
             return null;
         }
 
+        Customer customer = new Customer(DatabaseCustomerPostgre.getLastCustomerId()+1, name, email, password);
+
+        return customer;
     }
 
-    @RequestMapping(value = "/customer/{login}", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Customer loginCustomer(@RequestParam(value="email") String email,
                                   @RequestParam(value="password") String password)
     {

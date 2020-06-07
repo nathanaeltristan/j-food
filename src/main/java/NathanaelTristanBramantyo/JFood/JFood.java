@@ -6,28 +6,16 @@ package NathanaelTristanBramantyo.JFood;
  * @version 20/02/2020
  */
 
-import NathanaelTristanBramantyo.JFood.database.DatabaseCustomer;
-import NathanaelTristanBramantyo.JFood.database.DatabaseFood;
-import NathanaelTristanBramantyo.JFood.database.DatabasePromo;
-import NathanaelTristanBramantyo.JFood.database.DatabaseSeller;
-import NathanaelTristanBramantyo.JFood.exception.EmailAlreadyExistException;
-import NathanaelTristanBramantyo.JFood.exception.PromoCodeAlreadyExistException;
-import NathanaelTristanBramantyo.JFood.exception.SellerNotFoundException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 @SpringBootApplication
 public class JFood {
 
     public static void main(String[] args) {
 
-        //LOCATION
-        Location location1 = new Location("DKI Jakarta", "Capital", "Jakarta Selatan");
-
-        //SELLER
+        //LOCATION & SELLER
+        Location location1 = new Location("DKI Jakarta", "Jakarta Selatan", "Capital");
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Leonardus Wijaya", "leo@ui.ac.id", "082345678912", location1));
 
         //FOOD
@@ -39,7 +27,7 @@ public class JFood {
         }
 
         try{
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"French Fries", DatabaseSeller.getSellerById(1), 20000, FoodCategory.SNACKS));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Coca Cola", DatabaseSeller.getSellerById(1), 20000, FoodCategory.BEVERAGES));
         }
         catch (SellerNotFoundException e){
             System.out.println(e.getMessage());

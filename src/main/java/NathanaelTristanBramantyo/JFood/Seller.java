@@ -9,23 +9,22 @@ package NathanaelTristanBramantyo.JFood;
 
 public class Seller
 {
-    /* Bagian ini adalah bagian deklarasi variabel. */
-    private int id;                 //id dari seller
-    private String name;            //nama dari seller
-    private String email;           //email dari seller
-    private String phoneNumber;     //nomor telepon dari seller
-    private Location location;      //lokasi seller
+    // instance variables - replace the example below with your own
+    private int id;
+    private String name;
+    private String email;
+    private String phoneNumber;
+    private Location location;
 
-    
-    /* Bagian ini adalah constructor dari class Seller */
     /**
-     * @param id
-     * @param name
-     * @param email
-     * @param phoneNumber
-     * @param location
+     * constructor for objects class seller
+     * @param id is the id of seller
+     * @param name is the name of seller
+     * @param email is the email of seller
+     * @param phoneNumber is phone number of seller
+     * @param location is refering to an object of class Location that contain information of the seller
      */
-    public Seller(int id, String name, String email, String phoneNumber, Location location)
+    public Seller(int id, String name, String email, String phoneNumber,Location location)
     {
         this.id = id;
         this.name = name;
@@ -34,108 +33,89 @@ public class Seller
         this.location = location;
     }
 
-    
-    /* Bagian ini adalah bagian method dari class Seller. */
     /**
-     * Method yang digunakan untuk mengambil id dari seller.
-     * @return id
+     * this is getter of seller's id
+     * @return id of the seller
      */
-    // ini adalah getter.
     public int getId()
     {
         return id;
     }
-    
+
     /**
-     * Method yang digunakan untuk mengambil nama dari seller.
-     * @return name
+     * this is the getter of seller's name
+     * @return name of the seller
      */
     public String getName()
     {
         return name;
     }
-    
+
     /**
-     * Method yang digunakan untuk mengambil email dari seller.
-     * @return email
+     * this is the getter of seller's email
+     * @return email of the seller
      */
     public String getEmail()
     {
         return email;
     }
-    
+
     /**
-     * Method yang digunakan untuk mengambil nomor telepon dari seller.
-     * @return phoneNumber
+     * this is the getter of seller's phone number
+     * @return phone number of the seller
      */
     public String getPhoneNumber()
     {
         return phoneNumber;
     }
-    
-    /**
-     * Mengambil data parameter dari lokasi seller.
-     * @return location
-     */
+
     public Location getLocation()
     {
         return location;
     }
-    
-    // ini adalah setter.
+
     /**
-     * Menetapkan nilai id awal dari seller.
-     * @param id        merupakan id dari penjual
+     * this is setter of seller's id
+     * @param id is the id of seller
      */
-    public void setId (int id)
+    public void setId(int id)
     {
         this.id = id;
     }
-    
+
     /**
-     * Menetapkan string nama awal dari seller.
-     * @param name      merupakan nama dari penjual
+     * this is setter of seller's name
+     * @param name is the name of seller
      */
-    public void setName (String name)
+    public void setName(String name)
     {
         this.name = name;
     }
-    
+
     /**
-     * Menetapkan string email awal dari seller.
-     * @param email     merupakan email dari penjual
+     * this is the setter of seller's email
+     * @param email is the email of seller
      */
-    public void setEmail (String email)
+    public void setEmail(String email)
     {
         this.email = email;
     }
-    
+
     /**
-     * Menetapkan string nomor telepon awal dari seller.
-     * @param phoneNumber   merupakan nomor telepon dari penjual
+     * this is the setter of seller's phone number
+     * @param phoneNumber is the phone number of seller
      */
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
     }
-    
+
     /**
-     * Menetapkan lokasi awal dari seller.
-     * @param location     merupakan lokasi dari penjual
-     */
-    public void setLocation(Location location)
-    {
-        this.location = location;
-    }
-    
-    /**
-     * Bagian ini adalah bagian untuk print variabel yang ada di class Food.
+     * this is a method to print any data in this class
      */
     public String toString()
     {
-        return "Id = " + getId() 
-        + "Name = " + getName() 
-        + "Phone Number = " + getPhoneNumber() 
-        + "Location =" + getLocation().getCity();
+        return "Id = " + getId() + "\nNama = " + getName() +
+                "\nPhoneNumber = " + getPhoneNumber() + "\nLocation = " + getLocation().getProvince();
     }
 }

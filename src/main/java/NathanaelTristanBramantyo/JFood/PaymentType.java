@@ -2,23 +2,25 @@ package NathanaelTristanBramantyo.JFood;
 /**
  * Enumeration class PaymentType - write a description of the enum class here
  *
- * @author (your name here)
+ * @author nathanaeltristan
  * @version (version number or date here)
  */
+
 public enum PaymentType
 {
     CASHLESS("Cashless"),
     CASH("Cash");
-    
-    private String paymentType;
-    
-    PaymentType(String typePayment)
+
+    private String cara_bayar;
+
+    PaymentType(String cara_bayar)
     {
-        this.paymentType = paymentType;
+        this.cara_bayar = cara_bayar;
     }
-    
+
     public String toString()
     {
-        return paymentType;
+        return cara_bayar;
     }
+
 }
