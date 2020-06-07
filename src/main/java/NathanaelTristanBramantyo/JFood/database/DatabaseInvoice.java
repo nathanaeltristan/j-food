@@ -6,23 +6,23 @@ import NathanaelTristanBramantyo.JFood.exception.OngoingInvoiceAlreadyExistExcep
 
 import java.util.ArrayList;
 
-public class DatabaseInvoice
-{
-    private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<Invoice>();
+public class DatabaseInvoice {
+
+    private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
     /**
-     * Method to show food list
-     * @return Database of promo
+     * this method is getter for every invoice in invoice's database
+     * @return ArrayList<Invoice> is the array list of every invoice in the invoice's database
      */
-    public static ArrayList<Invoice> getInvoiceDatabase()
+    public static ArrayList<Invoice>  getDatabaseInvoice()
     {
         return INVOICE_DATABASE;
     }
 
     /**
-     * Method to show last id
-     * @return last id in database
+     * this method is to get the id of the last invoice added to invoice's database
+     * @return an integer of the last invoice's id
      */
     public static int getLastId()
     {
@@ -30,14 +30,16 @@ public class DatabaseInvoice
     }
 
     /**
-     * Method to show invoice by id
-     * @return invoice
+     * this method is to get some invoice by specifying it's id
+     * @param id is the invoice's id for the expected invoice object this method returns
+     * @return an Invoice class object in respect of the id specified in the parameter
+     * @throws InvoiceNotFoundException to check whether the invoice that goes by the id in the parameter exist or not
      */
     public static Invoice getInvoiceById(int id) throws InvoiceNotFoundException
     {
-        for(Invoice invoice : INVOICE_DATABASE)
+        for (Invoice invoice : INVOICE_DATABASE)
         {
-            if (id == invoice.getId())
+            if (invoice.getId() == id)
             {
                 return invoice;
             }
@@ -46,38 +48,34 @@ public class DatabaseInvoice
     }
 
     /**
-     * Method to show invoice by customer
-     * @return invoice
-     * @param customerId
+     * this method is to get every invoice under one customer
+     * @param customerId is the customer's id for the expected array list invoice that the customer have
+     * @return an ArrayList of Invoice object that the customer have
      */
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
-        ArrayList<Invoice> invoiceCustomer = new ArrayList<>();
-        for(Invoice invoice:INVOICE_DATABASE)
+        ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
+        for (Invoice invoice : INVOICE_DATABASE)
         {
-            if (customerId == invoice.getCustomer().getId())
+            if(invoice.getCustomer().getId() == customerId)
             {
-                invoiceCustomer.add(invoice);
+                invoiceList.add(invoice);
             }
         }
-        if (invoiceCustomer == null)
-        {
-            return null;
-        } else
-        {
-            return invoiceCustomer;
-        }
+        return invoiceList;
     }
 
     /**
-     * Method to add invoice
-     * @return false default return param to check successability
+     * this method is to add invoice to the array list in the DatabaseInvoice that hold every invoice registered
+     * @param invoice is a Invoice class object that wanted to be added to the DatabaseInvoice class array list
+     * @return a boolean, true if the invoice is successfully added
      */
     public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistException
     {
-        for(Invoice invoiceCheck:INVOICE_DATABASE)
+        int customerId = invoice.getCustomer().getId();
+        for (Invoice iterasi : INVOICE_DATABASE)
         {
-            if (invoiceCheck.getCustomer() == invoice.getCustomer() && invoiceCheck.getInvoiceStatus() == InvoiceStatus.ONGOING)
+            if(iterasi.getCustomer().getId() == customerId && iterasi.getInvoiceStatus() == InvoiceStatus.ONGOING)
             {
                 throw new OngoingInvoiceAlreadyExistException(invoice);
             }
@@ -88,14 +86,16 @@ public class DatabaseInvoice
     }
 
     /**
-     * Method to change invoice status
-     * @return false default return param to check successability
+     * this method is to change the invoice status for the invoice going by the id specified in the id parameter
+     * @param id is the id of the invoice that wanted to be changed the status of
+     * @param invoiceStatus is the status enum that wanted to be assigned to the invoice
+     * @return a boolean, true if the invoice's status is successfully changed
      */
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus)
     {
-        for(Invoice invoice:INVOICE_DATABASE)
+        for (Invoice invoice : INVOICE_DATABASE)
         {
-            if (id == invoice.getId() && invoice.getInvoiceStatus() == InvoiceStatus.ONGOING)
+            if(invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING))
             {
                 invoice.setInvoiceStatus(invoiceStatus);
                 return true;
@@ -105,20 +105,21 @@ public class DatabaseInvoice
     }
 
     /**
-     * Method to remove invoice
-     * @return false default return param to check successability
+     * this method is to remove an invoice going by the id specified in the id parameter
+     * @param id is the id of the invoice that wanted to removed
+     * @return a boolean, true if the invoice's status is successfully removed
      */
     public static boolean removeInvoice(int id) throws InvoiceNotFoundException
     {
-        for(int i = 0;  i < INVOICE_DATABASE.size(); i++)
+        for (Invoice invoice : INVOICE_DATABASE)
         {
-            Invoice invoice = INVOICE_DATABASE.get(i);
-            if (id == invoice.getId())
+            if(invoice.getId() == id)
             {
-                INVOICE_DATABASE.remove(id);
+                INVOICE_DATABASE.remove(invoice);
                 return true;
             }
         }
         throw new InvoiceNotFoundException(id);
     }
+
 }

@@ -1,4 +1,5 @@
 package NathanaelTristanBramantyo.JFood.exception;
+
 public class InvoiceNotFoundException extends Exception
 {
     private int invoice_error;

@@ -15,11 +15,11 @@ public class Promo
 
     /**
      * Constructor for objects of class Promo
-     * @param id variable for identifying promo
-     * @param code variable that stores code promo
-     * @param discount variable to store information about discount amount
-     * @param minPrice variable to store the minimum price of food needed to activate promo
-     * @param active variable to store information of promo status
+     * @param id is to hold the value of promo's id
+     * @param code is to hold promo's code
+     * @param discount to hold the value of promo's discount
+     * @param minPrice to hold the minimum price of the food for this promo to be valid
+     * @param active is to hold boolean value, if true then the promo is active, otherwise the promo is not valid/expired
      */
     public Promo(int id, String code, int discount, int minPrice, boolean active)
     {
@@ -31,8 +31,8 @@ public class Promo
     }
 
     /**
-     * Method as accessor to get id of the promo
-     * @return id variable that stores id of the promo
+     * this is the getter of promo's id
+     * @return id of the promo
      */
     public int getId()
     {
@@ -40,8 +40,8 @@ public class Promo
     }
 
     /**
-     * Method as accessor to get code of the promo
-     * @return code variable that stores code of the promo
+     * this is the getter of promo's code
+     * @return code of the promo
      */
     public String getCode()
     {
@@ -49,8 +49,8 @@ public class Promo
     }
 
     /**
-     * Method as accessor to get discount of the promo
-     * @return discount variable that stores discount of promo
+     * this is the getter of promo's discount value
+     * @return integer value of the promo's discount
      */
     public int getDiscount()
     {
@@ -58,8 +58,8 @@ public class Promo
     }
 
     /**
-     * Method as accessor to get minimum price of the promo
-     * @return minPrice variable that stores minimum price of the promo
+     * this is the getter of promo's code
+     * @return code of the promo
      */
     public int getMinPrice()
     {
@@ -67,8 +67,8 @@ public class Promo
     }
 
     /**
-     * Method as accessor to get status of the the promo
-     * @return active variable that stores status of the promo
+     * this is the getter of promo's active status
+     * @return boolean true if active otherwise flase
      */
     public boolean getActive()
     {
@@ -76,8 +76,8 @@ public class Promo
     }
 
     /**
-     * Method as setter or mutator to set or change id of the promo
-     * @param id variable that stores information about id of the promo
+     * this is the setter of promo's id
+     * @param id to set the promo's id
      */
     public void setId(int id)
     {
@@ -85,8 +85,8 @@ public class Promo
     }
 
     /**
-     * Method as setter or mutator to set or change code of the promo
-     * @param code variable that stores information about code of the promo
+     * this is the setter of promo's code
+     * @param code to set the promo's code
      */
     public void setCode(String code)
     {
@@ -94,8 +94,8 @@ public class Promo
     }
 
     /**
-     * Method as setter or mutator to set or change discount of the promo
-     * @param discount variable that stores information about discount amount of the promo
+     * this is the setter of promo's discount value
+     * @param discount to set the promo's discount
      */
     public void setDiscount(int discount)
     {
@@ -103,8 +103,8 @@ public class Promo
     }
 
     /**
-     * Method as setter or mutator to set or change minimum price of the promo
-     * @param minPrice variable that stores information about minimum price of the promo
+     * this is the setter of the minimum price to use this promo
+     * @param minPrice to set the minimum price of this promo
      */
     public void setMinPrice(int minPrice)
     {
@@ -112,8 +112,8 @@ public class Promo
     }
 
     /**
-     * Method as setter or mutator to set or change status of the promo
-     * @param active variable that stores information about status of the promo
+     * this is the setter to activate current promo
+     * @param active, boolean value, input true to activate the promo
      */
     public void setActive(boolean active)
     {
@@ -121,15 +121,16 @@ public class Promo
     }
 
     /**
-     * Method to set all variables Promo to String
+     * this method is to print any data in Promo class
      */
     public String toString()
     {
-        return  "==========Promo==========" +
-                "\nId: " + getId() +
-                "\nCode: " + getCode() +
-                "\nDiscount: " + getDiscount() +
-                "\nMin Price: " + getMinPrice() +
-                "\nActive Status: " + getActive() + "\n";
+        return "Id = " + getId() + "\nCode = " + getCode() +
+                "\nDiscount = " + getDiscount() + "\nMinPrice = " + getMinPrice() +
+                "\nActiveStatus = " + getActive();
     }
+
+
+
+
 }

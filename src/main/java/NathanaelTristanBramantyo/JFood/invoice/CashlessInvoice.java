@@ -20,50 +20,45 @@ public class CashlessInvoice extends Invoice
     private Promo promo;
 
     /**
-     * Constructor for objects of class CashlessInvoice without promo
-     * @param id variable for identifying Invoice
-     * @param foods variable that stores object food
-     * @param customer variable to store information about customer
+     * Constructor for objects of class CashInvoice
+     * @param id is the id of the current invoice
+     * @param foods is an array list that consist of object of Food class that specifies a list of foods the customer orders in the current invoice
+     * @param customer is a customer class object of the customer who orders in respect of this current invoice
+     * @param promo is a promo class object that this invoice use for if any promo is used
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        super(id,foods, customer);
+        super(id, foods, customer);
     }
 
-    /**
-     * Constructor for objects of class CashlessInvoice without promo
-     * @param id variable for identifying Invoice
-     * @param foods variable that stores object food
-     * @param customer variable to store information about customer
-     * @param promo variable to store information about promo that available
-     */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
-        super(id,foods, customer);
+        super(id, foods, customer);
         this.promo = promo;
     }
 
     /**
-     * Method as accessor or getter to get payment type of the invoice
-     * @return PAYEMENT_TYPE variable that stores information about payment type of the invoice
+     * getter for current invoice's payment type
+     * @return an integer value of this invoice delivery fee
      */
+    @Override
     public PaymentType getPaymentType()
     {
         return PAYMENT_TYPE;
     }
 
     /**
-     * Method as accessor or getter to get promo of the invoice
-     * @return promo variable that stores information about promo of the invoice
+     * getter for current invoice's promo in object of Promo class
+     * @return an object of Promo class if this invoice use any valid promo code
      */
     public Promo getPromo()
     {
-        return this.promo;
+        return promo;
     }
 
     /**
-     * Method as mutator or setter to get promo of the invoice
-     * @param promo variable that stores information about promo of the invoice
+     * setter for current invoice's promo
+     * @param promo is the promo that this invoice is going to use
      */
     public void setPromo(Promo promo)
     {
@@ -71,54 +66,77 @@ public class CashlessInvoice extends Invoice
     }
 
     /**
-     * Method to set the total price of the invoice. Total price set based on existence of promo
+     * this method is to calculate the total price for current invoice
      */
     public void setTotalPrice()
     {
         super.totalPrice = 0;
-        for(Food foods: getFoods())
+        //loop trough arraylist makanan dari Invoice
+        for(Food foodList : getFoods())
         {
-            super.totalPrice += foods.getPrice();
+            //totalkan harga makanan
+            super.totalPrice=super.totalPrice+foodList.getPrice();
         }
-        super.totalPrice -= promo.getDiscount();
+        //jika total harga memenuhi syarat promo dan promo aktif maka:
+        if (promo != null && getPromo().getActive() == true && super.totalPrice > getPromo().getMinPrice())
+        {
+            super.totalPrice = super.totalPrice  - promo.getDiscount();
+        }
+        //jika tidak ada promo maka:
+        else
+        {
+            super.totalPrice = super.totalPrice + 0;
+        }
     }
 
     /**
-     * Method to print data of the invoice
+     * this method is to return a complete string of the invoice informations
+     * @return a String about the information of current invoice
      */
     public String toString()
     {
-        int tempPrice = 0;
-        StringBuilder foodName = new StringBuilder();
-        for (Food food : getFoods())
-        {
-            tempPrice += food.getPrice();
-            foodName.append(food.getName()).append(", ");
+        //String manipulation buat list makanan yang dibeli
+        String foods = "";
+        for (Food foodList : getFoods()) {
+            foods = foods + foodList.getName() + ", ";
         }
-        SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
-        String date = format1.format(getDate().getTime());
-        if (getPromo() != null && getPromo().getActive() && tempPrice > getPromo().getMinPrice())
+        foods = foods.substring(0, foods.length() - 2);
+
+        //hitung total harga
+        setTotalPrice();
+
+        //set waktu sekarang
+        String timeNow = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        timeNow = sdf.format(super.getDate().getTime());
+
+        //return value
+        //if promo tidak ada / tidak aktif / total harga tidak memenuhi syarat promo maka:
+        if(promo == null || promo.getActive() == false || super.totalPrice  < getPromo().getMinPrice())
         {
-            return "================Invoice================" + "\n" +
-                    "ID: " + getId() + "\n" +
-                    "Name: " + foodName + "\n" +
-                    "Date: " + date + "\n" +
-                    "Customer: " + getCustomer().getName() + "\n" +
-                    "Promo: " + getPromo().getCode() + "\n" +
-                    "Total Price: " + totalPrice + "\n" +
-                    "Status: " + getInvoiceStatus() + "\n" +
-                    "Payment Type: " + getPaymentType() + "\n";
+            return "==========INVOICE==========\n" +
+                    "ID: " + super.getId() +
+                    "\nFood: " + foods +
+                    "\nDate: " + timeNow +
+                    "\nCustomer: " + super.getCustomer().getName() +
+                    "\nTotal Price: " + getTotalPrice() +
+                    "\nStatus: " + super.getInvoiceStatus() +
+                    "\nPayment Type: " + PAYMENT_TYPE +"\n";
+
         }
+        //jika kondisi promo dipenuhi maka:
         else
         {
-            return "================Invoice================" + "\n" +
-                    "ID: " + getId() + "\n" +
-                    "Name: " + foodName + "\n" +
-                    "Date: " + date + "\n" +
-                    "Customer: " + getCustomer().getName() + "\n" +
-                    "Total Price: " + totalPrice + "\n" +
-                    "Status: " + getInvoiceStatus() + "\n" +
-                    "Payment Type: " + getPaymentType() + "\n";
+            return "==========INVOICE==========\n" +
+                    "ID: " + super.getId() +
+                    "\nFood: " + foods +
+                    "\nDate: " + timeNow +
+                    "\nPromo: " + promo.getCode() +
+                    "\nCustomer: " + super.getCustomer().getName() +
+                    "\nTotal Price: " + getTotalPrice() +
+                    "\nStatus: " + super.getInvoiceStatus() +
+                    "\nPayment Type: " + PAYMENT_TYPE +"\n";
         }
+
     }
 }

@@ -1,10 +1,7 @@
 package NathanaelTristanBramantyo.JFood.controller;
 
 import NathanaelTristanBramantyo.JFood.*;
-import NathanaelTristanBramantyo.JFood.database.DatabaseCustomer;
-import NathanaelTristanBramantyo.JFood.database.DatabaseFood;
-import NathanaelTristanBramantyo.JFood.database.DatabaseInvoice;
-import NathanaelTristanBramantyo.JFood.database.DatabasePromo;
+import NathanaelTristanBramantyo.JFood.database.*;
 import NathanaelTristanBramantyo.JFood.exception.CustomerNotFoundException;
 import NathanaelTristanBramantyo.JFood.exception.FoodNotFoundException;
 import NathanaelTristanBramantyo.JFood.exception.InvoiceNotFoundException;
@@ -18,171 +15,140 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RequestMapping("/invoice")
-@CrossOrigin(origins = "*", allowedHeaders = "")
+@CrossOrigin(origins = " ", allowedHeaders = "*")
 @RestController
-public class InvoiceController {
-
-    /**
-     * Method to prints all invoice in the data base
-     * @return all invoice in database
-     */
-    @RequestMapping("")
-    public ArrayList<Invoice> getAllInvoice()
+public class InvoiceController
+{
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ArrayList<Invoice> getAllOInvoice()
     {
-        return DatabaseInvoice.getInvoiceDatabase();
+        return DatabaseInvoice.getDatabaseInvoice();
     }
 
-    /**
-     * Method to get invoice from id
-     * @param id variable to store id of invoice
-     * @return single invoice object
-     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Invoice getInvoiceById(@PathVariable int id) throws InvoiceNotFoundException {
-        Invoice invoice = DatabaseInvoice.getInvoiceById(id);
+    public Invoice getInvoiceById(@PathVariable int id) throws InvoiceNotFoundException
+    {
+        Invoice invoice = null;
+        try
+        {
+            invoice = DatabaseInvoice.getInvoiceById(id);
+        }
+        catch (InvoiceNotFoundException e)
+        {
+            e.getMessage();
+        }
         return invoice;
     }
 
-    /**
-     * Method to get invoice from customer
-     * @param customerId variable to store id of customer
-     * @return single invoice object
-     */
     @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
-    public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId) throws InvoiceNotFoundException {
-        ArrayList<Invoice> invoices = DatabaseInvoice.getInvoiceByCustomer(customerId);
-        return invoices;
+    public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId)
+    {
+        ArrayList<Invoice> invoice = null;
+        invoice = DatabaseInvoice.getInvoiceByCustomer(customerId);
+        return invoice;
     }
 
-    /**
-     * Method to get invoice from customer with ongoing status
-     * @param customerId variable to store id of customer
-     * @return single invoice object
-     */
-    @RequestMapping(value = "/customerOngoing/{customerId}", method = RequestMethod.GET)
-    public Invoice getInvoiceOngoingByCustomer(@PathVariable int customerId) throws InvoiceNotFoundException {
-        ArrayList<Invoice>invoices = DatabaseInvoice.getInvoiceByCustomer(customerId);
-        for(Invoice invoice:invoices){
-            if(invoice.getInvoiceStatus() == InvoiceStatus.ONGOING){
-                return invoice;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Method to change invoice status
-     * @param id variable to store id of invoice
-     * @param status variabel to store status invoice
-     * @return single invoice object if success, null if failed
-     */
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
-    public Invoice changeInvoiceStatus(@RequestParam(value="id") @PathVariable int id, @RequestParam(value="status") InvoiceStatus status) throws InvoiceNotFoundException {
-        if (DatabaseInvoice.changeInvoiceStatus(id, status))
+    public Invoice changeInvoiceStatus(@PathVariable(value = "id") int id,
+                                       @RequestParam(value = "status") InvoiceStatus status) throws InvoiceNotFoundException
+    {
+        Invoice invoice = null;
+        DatabaseInvoice.changeInvoiceStatus(id, status);
+        try
         {
-            return DatabaseInvoice.getInvoiceById(id);
+            invoice = DatabaseInvoice.getInvoiceById(id);
         }
-        return null;
+        catch (InvoiceNotFoundException e)
+        {
+            e.getMessage();
+        }
+        return invoice;
     }
 
-    /**
-     * Method to remove invoice
-     * @param id variable to store id of invoice
-     * @return true if success, null if failed
-     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Boolean removeInvoice(@PathVariable int id) {
+    public Boolean removeInvoice(@PathVariable(value = "id") int id) throws InvoiceNotFoundException
+    {
         try
         {
             DatabaseInvoice.removeInvoice(id);
-        } catch (InvoiceNotFoundException e)
+        }
+        catch (InvoiceNotFoundException e)
         {
-            e.printStackTrace();
-            return null;
+            e.getMessage();
+            return false;
         }
         return true;
     }
 
-    /**
-     * Method to adds new invoice into database with cash payment type
-     * @param foodIdList variable that stores all foods that was purchased
-     * @param customerId variable that stores id of the customer
-     * @param deliveryFee variable that stores delivery fee
-     * @return object invoice that was added to database
-     */
+
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
-    public Invoice addCashInvoice(@RequestParam(value="foodList") ArrayList<Integer> foodIdList,
-                                  @RequestParam(value="customerId") int customerId,
-                                  @RequestParam(value="deliveryFee",required = false,defaultValue = "0") int deliveryFee)
+    public Invoice addCashInvoice(@RequestParam(value = "foods") ArrayList<Integer> foods,
+                                  @RequestParam(value = "customer") int customerId,
+                                  @RequestParam(value = "deliveryFee", defaultValue = "0") int deliveryFee) throws CustomerNotFoundException
     {
-        ArrayList<Food> menu = new ArrayList<>();
-        for (Integer foodId : foodIdList)
+        ArrayList<Food> dummyFoods = new ArrayList<>();
+        for (Integer i : foods)
         {
             try
             {
-                menu.add(DatabaseFood.getFoodById(foodId));
-            } catch (FoodNotFoundException e) {
-                e.printStackTrace();
+                dummyFoods.add(DatabaseFood.getFoodById(i));
             }
+            catch (FoodNotFoundException e)
+            {
+                e.getMessage();
+            }
+        }
 
-        }
-        try{
-            Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId() + 1, menu, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
+        Invoice invoice = new CashInvoice(DatabaseInvoice.getLastId() + 1,
+                dummyFoods,
+                DatabaseCustomerPostgre.getCustomer(customerId),
+                deliveryFee);
+        try
+        {
             DatabaseInvoice.addInvoice(invoice);
-            DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId()).setTotalPrice();
-            return invoice;
         }
-        catch (OngoingInvoiceAlreadyExistException | CustomerNotFoundException | InvoiceNotFoundException e){
-            System.out.println(e.getMessage());
+        catch (OngoingInvoiceAlreadyExistException e)
+        {
+            e.getMessage();
+            return null;
         }
-        return null;
+        invoice.setTotalPrice();
+        return invoice;
     }
 
-    /**
-     * Method to adds new invoice into database with cashless payment type
-     * @param foodIdList variable that stores all foods that was purchased
-     * @param customerId variable that stores id of the customer
-     * @param promoCode variable that stores promo code
-     * @return object invoice that was added to database
-     */
+
     @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
-    public Invoice addCashlessInvoice(@RequestParam(value="foodList") ArrayList<Integer> foodIdList,
-                                      @RequestParam(value="customerId") int customerId,
-                                      @RequestParam(value="promoCode",required = false) String promoCode)
+    public Invoice addCashlessInvoice(@RequestParam(value = "foods") ArrayList<Integer> foods,
+                                      @RequestParam(value = "customer") int customerId,
+                                      @RequestParam(value = "promoCode", defaultValue = "") String promoCode) throws CustomerNotFoundException
     {
-        ArrayList<Food> menu = new ArrayList<>();
-        for (Integer foodId : foodIdList)
+        ArrayList<Food> dummyFoods = new ArrayList<>();
+        for (Integer i : foods)
         {
             try
             {
-                menu.add(DatabaseFood.getFoodById(foodId));
-            } catch (FoodNotFoundException e) {
-                e.printStackTrace();
+                dummyFoods.add(DatabaseFood.getFoodById(i));
             }
-
+            catch (FoodNotFoundException e)
+            {
+                e.getMessage();
+            }
         }
 
-        Promo promo = DatabasePromo.getPromoByCode(promoCode);
-        try{
-            Invoice invoice = new CashlessInvoice(DatabaseInvoice.getLastId() + 1, menu, DatabaseCustomer.getCustomerById(customerId), promo);
+        Invoice invoice = new CashlessInvoice(DatabaseInvoice.getLastId() + 1,
+                dummyFoods,
+                DatabaseCustomerPostgre.getCustomer(customerId),
+                DatabasePromo.getPromoByCode(promoCode));
+        try
+        {
             DatabaseInvoice.addInvoice(invoice);
-            DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId()).setTotalPrice();
-            return invoice;
         }
-        catch (OngoingInvoiceAlreadyExistException | CustomerNotFoundException | InvoiceNotFoundException e){
-            System.out.println(e.getMessage());
-        }return null;
-    }
-
-    @RequestMapping(value = "/cancel", method = RequestMethod.POST)
-    public Invoice cancelTransaction(@RequestParam(value="id") int id_invoice) throws InvoiceNotFoundException {
-        DatabaseInvoice.getInvoiceById(id_invoice).setInvoiceStatus(InvoiceStatus.CANCELLED);
-        return DatabaseInvoice.getInvoiceById(id_invoice);
-    }
-
-    @RequestMapping(value = "/finish", method = RequestMethod.POST)
-    public Invoice finishTransaction(@RequestParam(value="id") int id_invoice) throws InvoiceNotFoundException {
-        DatabaseInvoice.getInvoiceById(id_invoice).setInvoiceStatus(InvoiceStatus.FINISHED);
-        return DatabaseInvoice.getInvoiceById(id_invoice);
+        catch (OngoingInvoiceAlreadyExistException e)
+        {
+            e.getMessage();
+            return null;
+        }
+        invoice.setTotalPrice();
+        return invoice;
     }
 }

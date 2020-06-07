@@ -1,9 +1,10 @@
 package NathanaelTristanBramantyo.JFood.exception;
-public class FoodNotFoundException extends Exception
-{
+
+public class FoodNotFoundException extends Exception{
+
     private int food_error;
 
-    public FoodNotFoundException(int food_input)
+    public FoodNotFoundException (int food_input)
     {
         super("Food ID: ");
         this.food_error = food_input;

@@ -5,6 +5,7 @@ import NathanaelTristanBramantyo.JFood.PaymentType;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Class Invoice berisi id dari invoice, id dan total harga dari makanan,
@@ -17,185 +18,137 @@ import java.util.Calendar;
 
 public abstract class Invoice
 {
-
+    // instance variables - replace the example below with your own
     private int id;
-    private ArrayList<Food> foods;
+    private ArrayList<Food> foods = new ArrayList<>();
     private Calendar date;
-    protected int totalPrice = 0;
+    protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus invoiceStatus = InvoiceStatus.ONGOING;
+    // private PaymentType paymentType;
+    private InvoiceStatus invoiceStatus;
 
     /**
-     * Constructor for objects of class Invoice
+     * This is the constructor for objects of Invoice class
+     * @param id is to hold the value of invoice's id
+     * @param idFood is to hold the value of invoice's food id
+     * @param date is to hold the value of invoice's date
+     * @param customer is to hold the customer object in the current invoice
+     * @param totalPrice is to hold the value of total price of the current invoice
      */
     public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
-
         this.id = id;
         this.foods = foods;
+        // this.date = date;
         this.customer = customer;
-        this.date = Calendar.getInstance();
-
+        this.date = new GregorianCalendar();
+        this.invoiceStatus = InvoiceStatus.ONGOING;
     }
 
     /**
-     * getId() is used to return Invoice's ID
-     *
-     * @return    the Id of Invoice instance
+     * this is the getter of invoice's id
+     * @return id of the invoice
      */
     public int getId()
     {
-
         return id;
-
     }
 
     /**
-     * getFood() is used to return Invoice's food
-     *
-     * @return    the food of Invoice instance
+     * this is the getter of invoice's food id
+     * @return food id of the invoice
      */
     public ArrayList<Food> getFoods()
     {
-
         return foods;
-
     }
 
     /**
-     * getDate() is used to return Invoice's Date
-     *
-     * @return    the Date of Invoice instance
+     * this is the getter of invoice's date
+     * @return date of the invoice
      */
     public Calendar getDate()
     {
-
         return date;
-
     }
 
     /**
-     * getTotalPrice() is used to return Invoice's total price
-     *
-     * @return    the totalPrice of Invoice instance
+     * this is the getter of invoice's total price
+     * @return total price of the invoice
      */
     public int getTotalPrice()
     {
-
         return totalPrice;
-
     }
 
     /**
-     * getCustomer() is used to return Invoice's customer
-     *
-     * @return    the customer of Invoice instance
+     * this is the getter of invoice's customer
+     * @return a Customer Class object for current Invoice
      */
     public Customer getCustomer()
     {
-
         return customer;
-
     }
 
     /**
-     * getPaymentType() is used to return Invoice's payment method
-     *
-     * @return    the paymentType of Invoice instance
+     * getter abstract method for overriding in every Invoice subclasses, which will return the payment type
      */
     public abstract PaymentType getPaymentType();
 
-
-    /**
-     * getInvoiceStatus() is used to return Invoice's current status
-     *
-     * @return    the status of Invoice instance
-     */
     public InvoiceStatus getInvoiceStatus()
     {
-
         return invoiceStatus;
-
     }
 
     /**
-     * setId() is used to change Invoice's ID
-     *
-     * @param   id to overwrite the current instance's id
-     */
-    public void setId(int id)
-    {
-
-        this.id = id;
-
-    }
-
-    /**
-     * setFood() is used to change Invoice's food
-     *
-     * @param   foods to overwrite the current instance's food
-     */
-    public void setFoods(ArrayList<Food> foods)
-    {
-
-        this.foods = foods;
-
-    }
-
-    /**
-     * setDate() is used to change Invoice's date
-     *
-     * @param   date to overwrite the current instance's date
+     * this is the setter of the invoice's date
+     * @param date is date of the invoice
      */
     public void setDate(Calendar date)
     {
-
         this.date = date;
-
     }
 
     /**
-     * setDate() is used to change Invoice's date
-     *
-     * @param   date to overwrite the current instance's date
+     * this is the setter of invoice's date
+     * @param year the year current invoice is created
+     * @param month the month current invoice is created in integer
+     * @param dayOfMonth the day current invoice is created in integer
      */
     public void setDate(int year, int month, int dayOfMonth)
     {
-
-        this.date.set(year, month, dayOfMonth);
-
+        this.date = new GregorianCalendar(year, month-1, dayOfMonth);
     }
 
     /**
-     * setTotalPrice() is used to change Invoice's total price
-     *
-     * @param   totalPrice to overwrite the current instance's totalPrice
+     * this is the setter of the invoice's ordered foods
+     * @param foods is an array list for every food ordered in the current invoice
+     */
+    public void setFoods(ArrayList<Food> foods)
+    {
+        this.foods = foods;
+    }
+
+    /**
+     * this is the setter of the invoice's total price
+     * @param totalPrice is total price in the invoice
      */
     public abstract void setTotalPrice();
 
     /**
-     * setCustomer() is used to change Invoice's customer
-     *
-     * @param   customer to overwrite the current instance's customer
-     */
-    public void setCustomer(Customer customer)
-    {
-
-        this.customer = customer;
-
-    }
-
-    /**
-     * setInvoiceStatus() is used to change Invoice's status
-     *
-     * @param   status to overwrite the current instance's status
+     * this is the setter of the invoice's status
+     * @param invoiceStatus is the for which enum invoice status that wanted to be assigned to this invoice
      */
     public void setInvoiceStatus(InvoiceStatus invoiceStatus)
     {
-
         this.invoiceStatus = invoiceStatus;
-
     }
 
+    /**
+     * this method is to print any data in this class
+     */
     public abstract String toString();
+
+
+
 }

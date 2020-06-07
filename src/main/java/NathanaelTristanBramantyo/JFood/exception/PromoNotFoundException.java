@@ -1,9 +1,10 @@
 package NathanaelTristanBramantyo.JFood.exception;
+
 public class PromoNotFoundException extends Exception {
 
     private int promo_error;
 
-    public PromoNotFoundException(int promo_input)
+    public PromoNotFoundException (int promo_input)
     {
         super("Promo ID: ");
         this.promo_error = promo_input;

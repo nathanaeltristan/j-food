@@ -13,29 +13,17 @@ import java.util.ArrayList;
  */
 public class DatabaseCustomer
 {
-    // instance variables - replace the example below with your own
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int lastId = 0;
 
-    /**
-     * Constructor for objects of class DatabaseCustomer
-     */
-    public DatabaseCustomer()
-    {
-    }
-
-    /**
-     * Method to show customer database
-     * @return customer database
-     */
-    public static ArrayList<Customer> getCustomerDatabase()
+    public static ArrayList<Customer> getDatabaseCustomer()
     {
         return CUSTOMER_DATABASE;
     }
 
     /**
-     * Method to show last id
-     * @return last id in database
+     * getter of customer's last id in the array list database
+     * @return an integer of customer's last id in the database
      */
     public static int getLastId()
     {
@@ -43,14 +31,15 @@ public class DatabaseCustomer
     }
 
     /**
-     * Method to show customer by id
-     * @return customer
+     * this method is to return a Customer class object by it's id
+     * @param id is the id of the expected customer that this method returns
+     * @return a Customer object in respect to the id in the parameter id
      */
     public static Customer getCustomerById(int id) throws CustomerNotFoundException
     {
-        for(Customer customer:CUSTOMER_DATABASE)
+        for (Customer customer : CUSTOMER_DATABASE)
         {
-            if (id == customer.getId())
+            if (customer.getId() == id)
             {
                 return customer;
             }
@@ -59,14 +48,16 @@ public class DatabaseCustomer
     }
 
     /**
-     * Method to add customer
-     * @return false default return param to check successability
+     * this method is to add a customer to array list database
+     * @param customer is the Customer object that want to be added to the database
+     * @return a boolean, true if the customer is succeeded to be added to the database, otherwise false
+     * @throws EmailAlreadyExistException is to check whether the email that wanted to be added to database is already exist
      */
     public static boolean addCustomer(Customer customer) throws EmailAlreadyExistException
     {
-        for(Customer customers:CUSTOMER_DATABASE)
+        for (Customer iterasi : CUSTOMER_DATABASE)
         {
-            if (customers.getEmail() == customer.getEmail())
+            if(iterasi.getEmail().equals(customer.getEmail()))
             {
                 throw new EmailAlreadyExistException(customer);
             }
@@ -77,30 +68,37 @@ public class DatabaseCustomer
     }
 
     /**
-     * Method to remove customer
-     * @return false default return param to check successability
+     * this method is to remove the specified customer from the database
+     * @param id is the customer's id to point to the customer that wanted to be removed
+     * @return a boolean, true if the customer is succeeded to be removed from the database, otherwise false
+     * @throws CustomerNotFoundException is to check whether the customer that wanted to be removed from the database is exist or not
      */
     public static boolean removeCustomer(int id) throws CustomerNotFoundException
     {
-        for(int i = 0;  i < CUSTOMER_DATABASE.size(); i++)
+        for(Customer customer : CUSTOMER_DATABASE)
         {
-            Customer customer = CUSTOMER_DATABASE.get(i);
-            if (id == customer.getId())
+            if(customer.getId() == id)
             {
-                CUSTOMER_DATABASE.remove(id);
+                CUSTOMER_DATABASE.remove(customer);
                 return true;
             }
         }
         throw new CustomerNotFoundException(id);
     }
 
+    /**
+     * this method is check if the email and the password match for any customer
+     * @param email is the customer's email that wanted to be match to the password
+     * @param password is the customer's password for the email in this method's parameter
+     * @return a boolean, true if the email and the password match for any Customer's object in the database that have the specified email, otherwise returns false
+     */
     public static Customer getCustomerLogin(String email, String password)
     {
-        for(Customer cust : CUSTOMER_DATABASE)
+        for(Customer customers : CUSTOMER_DATABASE)
         {
-            if(email.equals(cust.getEmail()) && password.equals(cust.getPassword()))
+            if(customers.getEmail().equals(email) && customers.getPassword().equals(password))
             {
-                return cust;
+                return customers;
             }
         }
         return null;

@@ -4,14 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class DatabaseConnection {
-    protected static Connection connection() {
+public class DatabaseConnectionPostgre
+{
+    public static Connection connection()
+    {
         Connection c = null;
-        try {
+        try
+        {
+
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jfood", "nthtristan", "jfoodadmin");
-        } catch (Exception e) {
-            e.printStackTrace();
+            c = DriverManager.getConnection("jbdc:postgresql://localhost:5432/jfood", "postgres", "123456");
+        }
+        catch (Exception e)
+        {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }

@@ -15,16 +15,16 @@ public enum FoodCategory
     NOODLES("Noodles"),
     BAKERY("Bakery"),
     JAPANESE("Japanese");
-    
-    private String category;
-    
-    FoodCategory(String category)
+
+    private String status;
+
+    FoodCategory(String status)
     {
-        this.category = category;
+        this.status = status;
     }
-    
+
     public String toString()
     {
-        return category;
+        return status;
     }
 }

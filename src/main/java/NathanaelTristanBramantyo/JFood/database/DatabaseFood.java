@@ -15,20 +15,12 @@ import java.util.ArrayList;
 
 public class DatabaseFood
 {
-    // instance variables - replace the example below with your own
-    private static ArrayList<Food> FOOD_DATABASE= new ArrayList<Food>();
+    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
     private static int lastId = 0;
 
     /**
-     * Constructor for objects of class DatabaseFood
-     */
-    public DatabaseFood()
-    {
-    }
-
-    /**
-     * Method to show food list
-     * @return Database of foods
+     * this method is getter for every food in food's database
+     * @return ArrayList<Food> is the array list of every food in the food's database
      */
     public static ArrayList<Food> getFoodDatabase()
     {
@@ -36,8 +28,8 @@ public class DatabaseFood
     }
 
     /**
-     * Method to show last id
-     * @return last id in database
+     * this method is to get the id of the last food added to food's database
+     * @return an integer of the last food's id
      */
     public static int getLastId()
     {
@@ -45,90 +37,88 @@ public class DatabaseFood
     }
 
     /**
-     * Method to show food by id
-     * @return food
+     * this method is to get some food by specifying it's id
+     * @param id is the food's id for the expected food object this method returns
+     * @return a Food class object in respect of the id specified in the parameter
+     * @throws FoodNotFoundException to check whether the food that goes by the id in the parameter exist or not
      */
     public static Food getFoodById(int id) throws FoodNotFoundException
     {
-        for(Food foods:FOOD_DATABASE)
+        for (Food foods : FOOD_DATABASE)
         {
-            if (id == foods.getId())
+            if (foods.getId() == id)
             {
                 return foods;
             }
         }
-        throw new FoodNotFoundException(id);
+        throw new FoodNotFoundException(id) ;
     }
 
     /**
-     * Method to show food by seller
-     * @return food
+     * this method is to get every food under one seller
+     * @param sellerId is the seller's id for the expected array list food that the seller sells
+     * @return an ArrayList of Food object that the seller sells
      */
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
-        ArrayList<Food> seller_foods = new ArrayList<>();
-        for(Food food:FOOD_DATABASE)
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        for (Food foods : FOOD_DATABASE)
         {
-            if (sellerId == food.getSeller().getId())
+            if(foods.getSeller().getId() == sellerId)
             {
-                seller_foods.add(food);
+                foodList.add(foods);
+            }
+            else
+            {
+                foodList = null;
             }
         }
-        return seller_foods;
+        return foodList;
     }
 
     /**
-     * Method to show food by category
-     * @return food
+     * this method is to get every food under the specified food category from FoodCategory enum
+     * @param foodCategory is the expected category for every food's array list returned
+     * @return an ArrayList<Food> array list of food that have the category field same as foodCategory specified in the parameter
      */
-    public static ArrayList<Food> getFoodByCategory(FoodCategory category)
+    public static ArrayList<Food> getFoodByCategory(FoodCategory foodCategory)
     {
-        ArrayList<Food> categoryFoods = new ArrayList<>();
-        for(Food food:FOOD_DATABASE) {
-            if (category == food.getCategory())
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        for (Food foods : FOOD_DATABASE)
+        {
+            if(foods.getCategory().equals(foodCategory))
             {
-                categoryFoods.add(food);
+                foodList.add(foods);
             }
         }
-        if (categoryFoods == null)
-        {
-            return null;
-        } else
-        {
-            return categoryFoods;
-        }
+        return foodList;
     }
 
     /**
-     * Method to add food
-     * @return false default return param to check successability
+     * this method is to add food to the array list in the DatabaseFood that hold every food registered
+     * @param food is a Food class object that wanted to be added to the DatabaseFood class array list
+     * @return a boolean, true if the food is successfully added
      */
     public static boolean addFood(Food food)
     {
-        for(Food foodCheck:FOOD_DATABASE)
-        {
-            if (foodCheck.getId() == food.getId())
-            {
-                return false;
-            }
-        }
         FOOD_DATABASE.add(food);
         lastId = food.getId();
         return true;
     }
 
     /**
-     * Method to remove food
-     * @return false default return param to check successability
+     * this method is to remove some food from database array list by specifying it's id
+     * @param id is the food's id for the expected food object this method returns
+     * @return a Food class object in respect of the id specified in the parameter
+     * @throws FoodNotFoundException to check whether the food that goes by the id in the parameter exist or not
      */
     public static boolean removeFood(int id) throws FoodNotFoundException
     {
-        for(int i = 0;  i < FOOD_DATABASE.size(); i++)
+        for(Food foods : FOOD_DATABASE)
         {
-            Food food = FOOD_DATABASE.get(i);
-            if (id == food.getId())
+            if(foods.getId() == id)
             {
-                FOOD_DATABASE.remove(id);
+                FOOD_DATABASE.remove(foods);
                 return true;
             }
         }

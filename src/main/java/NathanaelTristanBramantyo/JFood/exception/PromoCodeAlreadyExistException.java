@@ -2,19 +2,18 @@ package NathanaelTristanBramantyo.JFood.exception;
 
 import NathanaelTristanBramantyo.JFood.Promo;
 
-public class PromoCodeAlreadyExistException extends Exception
-{
+public class PromoCodeAlreadyExistException extends Exception {
+
     private Promo promo_error;
 
     public PromoCodeAlreadyExistException(Promo promo_input)
     {
-        super("Promo Code: ");
+        super ("Promo Code: ");
         this.promo_error = promo_input;
     }
 
     @Override
-    public String getMessage()
-    {
-        return super.getMessage() + promo_error.getCode() + " already exists";
+    public String getMessage() {
+        return super.getMessage() + promo_error.getCode() + " already exists.";
     }
 }

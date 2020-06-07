@@ -2,8 +2,8 @@ package NathanaelTristanBramantyo.JFood.exception;
 
 import NathanaelTristanBramantyo.JFood.Customer;
 
-public class EmailAlreadyExistException extends Exception
-{
+public class EmailAlreadyExistException extends Exception {
+
     private Customer customer_error;
 
     public EmailAlreadyExistException(Customer customer_input)
@@ -13,8 +13,7 @@ public class EmailAlreadyExistException extends Exception
     }
 
     @Override
-    public String getMessage()
-    {
-        return super.getMessage() + customer_error.getEmail() + " already exists";
+    public String getMessage() {
+        return super.getMessage() + customer_error.getEmail() + " already exist.";
     }
 }
